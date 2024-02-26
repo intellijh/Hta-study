@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        document.write('1 < 2 : ' + (1 < 2) + "<hr>");
+
+        //숫자와 숫자형 문자열 자료형 변환
+        // 숫자와 문자열을 비교할 경우 문자열을 숫자로 변환한 후 비교한다.
+        document.write('1 < "2" : ' + (1 < "2") + "<br>");
+        document.write('"2" > 1 : ' + ("2" > 1) + "<hr>");
+
+        // 숫자와 비교하는 문자열이 숫자가 아닌 경우에는 NaN이 되고
+        // 둘중 하나가 NaN이면 false를 반환한다.
+        document.write('"A" > 1 : ' + ("A" > 1) + "<hr>");
+
+        // 동등 연산자(==)
+        document.write('1 == "2" : ' + (1 == "2") + "<br>");
+        document.write('1 == "1" : ' + (1 == "1") + "<hr>");
+
+        //문자열이 숫자가 아닌 경우 NaN 출력
+        document.write("Number('A') : " + Number('A') + "<hr>");
+
+        document.write('1 == "A" : ' + (1 == "A") + "<hr>");
+
+        // 일치 연산자(===) : 양 변의 자료형과 값이 일치하는지 비교
+        document.write('1 === "2" : ' + (1 === "2") + "<br>");
+        document.write('1 === "1" : ' + (1 === "1") + "<br>");
+        document.write('"1" === "1" : ' + ("1" === "1") + "<hr>");
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DAte</title>
+</head>
+<body>
+<script>
+    /*
+    Date 객체
+    - 컴퓨터에서 제공되는 날짜와 시간을 알아내거나 설정하기 위한 객체
+    - 메서드의 종류
+    getFullYear() - 연도(yyyy)
+    getMonth() - 월(0:1월 ~ 11:12월)
+    getDate() - 일
+    getDay() - 요일(0:일요일 ~ 6:토요일)
+    getHours() - 시간(0 ~ 23)
+    getMinutes() - 분
+    getSeconds() - 초
+    getMilliseconds() - 밀리초(1/1000초)를 리턴(0 ~ 999)
+    getTime() - 1970년 1월 1일부터 경과된 시간을 밀리초로 구함
+    toLocaleString() - 객체의 시간 정보를 local 표현의 문자열로 리턴
+    예) var today = new Date();
+        var start = new Date(2018, 10, 7); 2018년 11월 7일의 날짜 정보로 지정
+    */
+    var today = new Date();
+    var y4 = today.getFullYear();
+    var m = today.getMonth() + 1;
+    var d = today.getDate();
+
+    document.write("오늘 날짜: " + y4 + "년 " + m + "월 " + d + "일" + "<br>");
+    document.write("현재 시간: " + today.getHours() + "시 "
+        + today.getMinutes() + "분 "
+        + today.getMinutes() + "초 "
+        + today.getMilliseconds() + "<br>");
+    document.write(today.toLocaleString() + "<hr>");
+
+    var start = new Date();
+    var t1 = start.getTime();
+    var sum = 0;
+
+    for (var i = 0; i < 100000000; i++) {
+        sum += i;
+    }
+
+    var end = new Date();
+    var t2 = end.getTime();
+    document.write("sum = " + sum + "<br>");
+    document.write("1에서 100000000까지 더하는 데 걸린 시간 : " + (t2 - t1) + "ms<br>");
+    document.write("<hr>");
+
+    // Math 객체 - 수학과 관련된 속성과 메서드를 갖는 객체이다.
+    document.write("ceil(4.3) 올림 = " + Math.ceil(4.3) + "<br>");
+    document.write("ceil(-4.3) 올림 = " + Math.ceil(-4.3) + "<br>");
+
+    document.write("floor(4.5) 내림 = " + Math.floor(4.5) + "<br>");
+    document.write("floor(-4.5) 내림 = " + Math.floor(-4.5) + "<br>");
+
+    document.write("round(4.5) 반올림 = " + Math.round(4.5) + "<br>");
+
+</script>
+</body>
+</html>

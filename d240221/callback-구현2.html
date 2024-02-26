@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>callTenTimes</title>
+    <script>
+        function callTenTimes(callback) {
+            for (var i = 0; i < 10; i++) {
+                callback(i);
+            }
+        }
+
+        callTenTimes(function (index) {
+            alert("함수 호출 = " + index);
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>

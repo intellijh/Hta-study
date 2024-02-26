@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>문서 객체 가져오기</title>
+    <!--
+        1. getElementsByName(namevalue)
+        태그의 name속성이 namevalue와 일치하는 문서 객체를 배열로 가져옵니다.
+
+        2. getElementsByTagName(tagName)
+        태그 이름이 tagName과 일치하는 모든 태그의 문서 객체를 배열로 가져옵니다.
+
+        3. getElementsByClassName(className)
+        클래스 속성이 className과 일치하는 문서 객체를 배열로 가져옵니다.
+
+        4. querySelector(selector)
+        selector와 일치하는 첫 번째 문서객체를 가져옵니다.
+
+        5. querySelectorAll(selector)
+        selector와 일치하는 모든 문서객체를 배열로 가져옵니다.
+    -->
+    <script>
+        window.onclick = function () {
+            // 문서 객체를 가져옵니다.
+            var headers = document.getElementsByTagName("h1");
+            console.log("h1 문서 객체의 갯수 = " + headers.length);
+
+            // 문서 객체의 속성을 변경합니다.
+            headers[0].innerHTML = "headers[0]: with getElementByTagName";
+            headers[1].innerHTML = "headers[0]: with getElementByTagName";
+
+            var input = document.getElementsByName("age");
+            input[0].value = "24살입니다.";
+            input[0].style.color = "green";
+            input[1].focus();
+            input[1].style.background = "orange";
+        };
+    </script>
+</head>
+<body>
+<h1 id="header-1">윈도우를 클릭하면 변경됩니다.</h1>
+<h1 id="header-2">윈도우를 클릭하면 변경됩니다.</h1>
+
+<input type="text" name="age" value="1"/>
+<input type="text" name="age" value="2"/>
+</body>
+</html>

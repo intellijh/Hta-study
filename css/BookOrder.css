@@ -1,0 +1,35 @@
+h2 {
+    text-align: center;
+}
+table {
+    width: 500px;
+    height: 200px;
+    text-align: center;
+}
+table, th, td {
+    margin: auto;
+    border: 1px solid gainsboro;
+}
+input {
+    text-align: center;
+    outline-color: red;
+}
+/*
+#book1:focus, #book2:focus, #book3:focus {
+    outline: none;
+    border: 2px solid red ;
+}
+*/
+td:first-child {
+    background: yellow;
+}
+tr:last-child {
+    background: green;
+}
+tr:last-child > td:first-child {
+    background: white;
+}
+form {
+    display: block;
+    text-align: center;
+}

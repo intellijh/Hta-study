@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>문서 객체 스타일 조작</title>
+    <script>
+        window.onclick = function () {
+            var header = document.getElementById("header");
+
+            header.style.border = "2px solid black";
+            header.style.color = "orange";
+            /*
+                CSS에서 background-color는 하이픈(-) 없애고 끊어진 단어의 첫 글자를 대문자로 변경하면 됩니다.
+                예) background-color -> backgroundColor
+            */
+            header.style.backgroundColor = "red";
+
+            // CSS에서의 속성 font-family -> fontFamily
+            header.style.fontFamily = "굴림";
+        };
+    </script>
+</head>
+<body>
+<h1 id="header">Header</h1>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>함수 안 변수</title>
+    <!--
+        단, 함수 안에서 var를 생략하면 전역 변수로 취급한다.
+    -->
+    <script>
+        function test(name) {
+            output = "Hello " + name + " .. !";
+        }
+
+        test("자바스크립트");
+        alert(output);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

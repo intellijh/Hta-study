@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>confirm</title>
+</head>
+<body>
+<script>
+    /* 확인 : true, 취소 : false*/
+    var answer = confirm("장바구니로 이동할까요?")
+    var list;
+    list = "Answer = " + answer + "<br>";
+    if (answer == true) {
+        list += "<img src=../image/apple.png>";
+    } else {
+        list += "<style>body {background: yellow} </style>";
+    }
+
+    document.body.innerHTML = list;
+</script>
+</body>
+</html>

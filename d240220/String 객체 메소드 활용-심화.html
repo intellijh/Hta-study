@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>String 객체의 메소드 활용</title>
+    <style>
+        @keyframes genderMove {
+            0% {
+                color: purple;
+            }
+            25% {
+                color: red;
+            }
+            50% {
+                color: orange;
+            }
+            75% {
+                color: yellow;
+            }
+            100% {
+                color: green;
+            }
+        }
+
+        #gender {
+            font-size: 10em;
+            font-weight: bold;
+            animation: genderMove 4s infinite;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h3>String 객체의 메소드 활용</h3>
+<hr>
+<script>
+    var jumin = prompt("주민번호를 입력하세요", "810908-3234567");
+    var isValid = true;
+
+    var func = function () {
+        if (jumin.length != 14) {
+            alert("주민번호의 길이는 14개 입니다.")
+            isValid = false;
+            return;
+        }
+
+        var frontJumin = jumin.substring(0, 6);
+
+        if (isNaN(frontJumin)) {
+            alert("앞자리 형식을 확인하세요");
+            isValid = false;
+            return;
+        }
+
+        var isBar = jumin.substring(6, 7);
+        if (isBar != '-') {
+            alert("앞자리 입력 후 -을 입력하세요");
+            isValid = false;
+            return;
+        }
+
+        var backJumin = jumin.substring(7);
+        if (isNaN(backJumin)) {
+            alert("뒷자리 형식을 확인하세요");
+            isValid = false;
+            return;
+        }
+
+        var gender = jumin.substring(7, 8);
+        if (gender == 1 || gender == 3) {
+            document.body.style.background = "mediumslateblue";
+            document.body.innerHTML += "<div id='gender'>남자</div>";
+        } else if (gender == 2 || gender == 4) {
+            document.body.style.background = "pink";
+            document.body.innerHTML += "<div id='gender'>여자</div>";
+        } else {
+            alert("잘못된 주민번호 값입니다.");
+            isValid = false;
+        }
+    };
+/*    if (jumin.length != 14) {
+        alert("주민번호의 길이는 14개 입니다.")
+        isValid = false;
+    }
+
+    var frontJumin = jumin.substring(0, 6);
+
+    if (isNaN(frontJumin) == true) {
+        alert("앞자리 형식을 확인하세요");
+        isValid = false;
+    }
+
+    var isBar = jumin.substring(6, 7);
+    if (isBar != '-') {
+        alert("앞자리 입력 후 -을 입력하세요");
+        isValid = false;
+    }
+
+    var backJumin = jumin.substring(7);
+    if (isNaN(backJumin) == true) {
+        alert("뒷자리 형식을 확인하세요");
+        isValid = false;
+    }
+
+    var gender = jumin.substring(7, 8);
+
+    if (isValid == true) {
+        if (gender == 1 || gender == 3) {
+            document.body.style.background = "mediumslateblue";
+            document.body.innerHTML += "<div id='gender'>남자</div>";
+        } else if (gender == 2 || gender == 4) {
+            document.body.style.background = "pink";
+            document.body.innerHTML += "<div id='gender'>여자</div>";
+        } else {
+            alert("잘못된 주민번호 값입니다.");
+            isValid = false;
+        }
+    }*/
+
+    func();
+    if (!isValid) {
+        document.body.innerHTML += "형식에 맞지 않습니다.";
+    }
+</script>
+</body>
+</html>

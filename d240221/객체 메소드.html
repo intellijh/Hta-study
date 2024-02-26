@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>객체 메소드</title>
+</head>
+<body>
+<script>
+    var saram = new Object();
+
+    saram.name = "나최고";
+    saram.age = 25;
+    saram.ki = 170.2;
+    saram.blood = "A";
+    saram.address = "서울시 강남구";
+
+    saram.print = function () {
+        var list = "";
+        for (var p in saram) {
+            list += p + '=' + saram[p] + "<br>";
+        }
+        document.body.innerHTML = list;
+    };
+
+    saram.print();
+</script>
+</body>
+</html>

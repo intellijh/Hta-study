@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="../css/ex02062.css" type="text/css" rel="stylesheet">
+    <title>회원가입 폼</title>
+    <!--
+        인라인 모델의 form 태그 onsubmit 이벤트 속성에 return 함수()형태로 입력 합니다.
+        1. 이름의 값을 확인하고 빈문자열인 경우
+            (1)alert()를 이용해서 '이름을 입력하세요'라는 대화상자가 나타납니다.
+            (2)이름에 포커스를 줍니다.
+            (3)submit 이벤트가 발생하지 않도록 합니다.
+
+        2. 비밀번호와 비밀번호 확인도 1번과 같은 작업을 합니다.
+
+        3. 이름, 비밀번호, 비밀번호 확인을 모두 입력한 경우
+            (1) 비밀번호와 비밀번호 확인 값이 같은지 확인합니다.
+            (2) 같다면 alert()를 이용해서 '성공'이라는 대화상자가 나타나고 action 속성의 값으로 이동합니다.
+            (3) 다르다면 alert()를 이용해서 '비밀번호가 다릅니다. 다시 입력해 주세요'라는 대화상자가 나타나고
+                비밀번호와 비밀번호확인의 값을 빈문자열로 설정하고 비밀번호에 포커스를 준 뒤
+                submit 이벤트가 발생하지 않도록 합니다.
+    -->
+    <script>
+        function whenSubmit() {
+            const name = document.getElementById("name").value.trim();
+            const pass = document.getElementById("pass").value.trim();
+            const passCheck = document.getElementById("pass-check").value.trim();
+
+            if (name === "") {
+                alert("이름을 입력하세요");
+                document.getElementById("name").focus();
+                return false;
+            } else if (pass === "") {
+                alert("비밀번호를 입력하세요");
+                document.getElementById("pass").focus();
+                return false;
+            } else if (passCheck === "") {
+                alert("비밀번호 확인을 입력하세요");
+                document.getElementById("pass-check").focus();
+                return false;
+            }
+
+            if (pass !== passCheck) {
+                alert("비밀번호가 다릅니다. 다시 입력해주세요.");
+                document.getElementById("pass").value = "";
+                document.getElementById("pass-check").value = "";
+                document.getElementById("pass").focus();
+                return false;
+            }
+            alert("성공");
+        }
+    </script>
+</head>
+<body>
+<form onsubmit="return whenSubmit()" action="eventhandling_id.html">
+    <fieldset>
+        <legend>회원가입 폼</legend>
+        <label for="name">이름</label>
+        <input type="text" name="name" id="name">
+        <br>
+        <label for="pass">비밀번호</label>
+        <input type="text" name="pass" id="pass">
+        <br>
+        <label for="pass-check">비밀번호 확인</label>
+        <input type="text" name="pass-check" id="pass-check">
+        <br>
+        <input type="submit" value="제출">
+    </fieldset>
+</form>
+</body>
+</html>

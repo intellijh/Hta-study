@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>객체 메소드</title>
+    <style>
+        caption {
+            color: green;
+            font-size: 2em;
+        }
+        table, td, th {
+            border: 1px solid gray;
+            border-collapse: collapse;
+        }
+        table {
+            width: 1000px;
+            height: 300px;
+            margin: auto;
+            text-align: center;
+        }
+        th {
+            background: pink;
+        }
+
+    </style>
+</head>
+<body>
+<script>
+    var saram = new Object();
+
+    saram.name = "나최고";
+    saram.age = 25;
+    saram.ki = 170.2;
+    saram.blood = "A";
+    saram.address = "서울시 강남구";
+
+    var list = "";
+    list += "<table>";
+    list += "<caption>신상 정보</caption>"
+    list += "   <thead>"
+    list += "   <tr>";
+    list += "       <th>항목 (속성:property)</th>";
+    list += "       <th>내용 (값:value)</th>";
+    list += "   </tr>";
+    list += "   </thead>"
+
+    list += "   <tbody>";
+    for (var p in saram) {
+        var unit = "";
+        switch (p) {
+            case "age":
+                unit = "세";
+                break;
+            case "ki":
+                unit = "cm";
+                break;
+            case "blood":
+                unit = "형";
+                break;
+        }
+        list += "   <tr>";
+        list += "       <td>saram." + p + "</td>";
+        list += "       <td>" + saram[p] + unit + "</td>"; //saram[p] 대신 this[p] 사용 가능
+        list += "   </tr>";
+    }
+    list += "   </tbody>";
+    list += "</table>";
+
+    document.body.innerHTML += list;
+</script>
+</body>
+</html>

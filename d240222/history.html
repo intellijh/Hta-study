@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>history</title>
+    <!--
+        실행 전에 다른 문서 두 개 실행하세요.
+        실행 순서 :
+        1. 마지막 페이지로 이동 클릭
+        2. <- 클릭
+        3. "이전 페이지로 이동" 클릭
+        4 -> 클릭
+        5. "다음 페이지로 이동" 클릭
+    -->
+</head>
+<body>
+<h1>두번째 페이지</h1>
+<p><a href="문서 객체 제거.html">마지막 페이지로 이동</a></p>
+<input type="button" value="이전 페이지로 이동" onclick="history.back()">
+
+<input type="button" value="다음 페이지로 이동" onclick="history.go(1)">
+<!--
+    history.go(1) : 다음 페이지로 이동
+    history.go(-1) : 이전 페이지로 이동
+    history.go(-2) : 전전 페이지로 이동
+-->
+<input type="button" value="forward 버튼" onclick="history.forward()">
+</body>
+</html>

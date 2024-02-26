@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>객체 리터럴</title>
+</head>
+<body>
+<script>
+    var saram = {
+        "name": '나최고',
+        'age': 25,
+        ki: 170.2,
+        blood: 'A',
+        address: '서울시 강남구',
+        print: function () {
+            var list = "";
+            for (var p in saram) {
+                if (p != "print") {
+                    list += p + ":" + saram[p] + "<br>";
+                }
+            }
+            document.body.innerHTML = list;
+        }
+    };
+
+    saram.print();
+</script>
+</body>
+</html>
