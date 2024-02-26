@@ -5,7 +5,9 @@
     <script src="../js/jquery-3.7.1.min.js"></script>
     <script>
         $(function () {
-            $(`li:nth-child(2), li:nth-child(3)`).css("color", "red");
+            // $(`li:nth-child(2), li:nth-child(3)`).css("color", "red");
+            $(`li + li`).css("color", "red");
+            // $(`li ~ li`).css("color", "red");
         });
     </script>
 </head>
