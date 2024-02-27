@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function () {
+            $("div:first").text("<span>호호</span>");
+            $("div:eq(1)").html("<span>하하</span>");
+
+            console.log($("div:eq(3)").text());
+            console.log($("div:eq(3)").html());
+        });
+    </script>
+</head>
+<body>
+<div>월요일</div>
+<div>화요일</div>
+<div>수요일</div>
+<div><span>하하</span></div>
+</body>
+</html>

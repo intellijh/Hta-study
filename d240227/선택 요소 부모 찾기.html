@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body * {
+            display: block;
+            border: 2px solid lightgray;
+            color: lightgray;
+            padding: 5px;
+            margin: 15px;
+        }
+    </style>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function () {
+            $("span").parent().css({
+                "color": "red",
+                "border": "2px solid red"
+            });
+        });
+    </script>
+</head>
+<body class="ancestors">body (great-great-grandparent)
+<div style="width: 500px">div (great-grandparent)
+    <ul>ul (grandpaent)
+        <li>li (direct parent)
+            <span>span - 나</span>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        table {
+            width: 500px;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        table, td, tr {
+            border: 1px solid black;
+        }
+        tr {
+            height: 3em;
+        }
+    </style>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function () {
+            $("thead").empty();
+        });
+    </script>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <td>번호</td>
+        <td>이름</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>1</td>
+        <td>홍길동</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>임길동</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>감길동</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

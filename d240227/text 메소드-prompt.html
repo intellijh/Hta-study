@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--
+        text() 메소드 : 문서 객체 내부의 글자와 관련된 기능을 수행합니다.
+        1. $(selector).text(); - 선택된 텍스트 노드의 값을 가져옵니다.
+        2. $(selector).text(value); - 선택된 텍스트 노드의 값을 변경합니다.
+        3. $(selector).text(function(index, text){});
+
+    -->
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function () {
+            const name = prompt("이름을 입력하세요");
+            const index = prompt("위치를 입력하세요");
+            $("h1").eq(index-1).text(name);
+        });
+    </script>
+</head>
+<body>
+<h1>Header-1</h1>
+<h1>Header-2</h1>
+<h1>Header-3</h1>
+</body>
+</html>

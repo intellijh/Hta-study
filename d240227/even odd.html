@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        li {
+            height: 50px; list-style: none; font-size: 20px; line-height: 50px;
+        }
+    </style>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        /*
+        * 위치 필터 선택자 : 위치와 관련된 필터 선택자입니다.
+        * 요소 : even(짝수 인덱스 요소 문서 객체를 선택합니다. 0, 2, 4, 6...)
+        * 요소 : odd(홀수 인덱스 요소 문서 객체를 선택합니다. 1, 3, 5, 7...)
+        */
+        $(function () {
+            $("li:even").css("background", "#00ff00");
+            $("li:odd").css("background", "red");
+        });
+    </script>
+</head>
+<body>
+<ul>
+    <li>0</li>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+</ul>
+</body>
+</html>

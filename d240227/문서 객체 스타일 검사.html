@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+        }
+        .red {
+            background-color: red;
+        }
+        .orange {
+            background-color: orange;
+        }
+        .yellow {
+            background-color: yellow;
+        }
+    </style>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function () {
+            // div 태그의 background 속성의 값을 구해와서 변수 color에 저장합니다.
+            // 세개의 div 태그 중 첫번째문서 객체의 스타일 속성을 가져옵니다.
+            const color = $("div").css("background-color");
+            console.log(color);
+        });
+    </script>
+</head>
+<body>
+<div class="red"></div>
+<div class="orange"></div>
+<div class="yellow"></div>
+</body>
+</html>

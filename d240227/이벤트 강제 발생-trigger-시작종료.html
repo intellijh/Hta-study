@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+
+    </style>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function () {
+            $("h1").click(function () {
+                $(this).html(function (index, html) {
+                    return html + "*";
+                });
+            });
+
+            const timer = setInterval(function () {
+                $("h1:last").trigger("click");
+            }, 1000);
+
+            $("#start").click(function () {
+                setInterval(timer);
+            });
+
+            $("#end").click(function () {
+                clearInterval(timer);
+            });
+        });
+    </script>
+</head>
+<body>
+<h1>Start:</h1>
+<h1>Start:</h1>
+<input type="button" value="트리거 시작" id="start">
+<input type="button" value="트리거 종료" id="end">
+</body>
+</html>
