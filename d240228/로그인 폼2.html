@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            width:400px;      margin:0 auto;	border-radius: 5px;
+            background-color: #f2f2f2; 	padding: 20px;
+        }
+        label{font-weight:bold}
+
+        input[type=text], input[type=password] {
+            width: 100%;	padding: 12px 20px;	margin: 8px 0;	display: inline-block;
+            border: 1px solid #ccc;	border-radius: 4px;	box-sizing: border-box;
+        }
+
+        input[type=submit] {
+            width: 100%;	background-color: #4CAF50;	color: white;	padding: 14px 20px;
+            margin: 8px 0;	border: none;	border-radius: 4px;	cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+        input[type=text]:focus{
+            border:2px solid pink;
+            outline: none;
+        }
+    </style>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <!--
+        입력 양식(input태그, textarea)에서 발생하는 이벤트를 사용합니다.
+        1. change 이벤트 : 입력 양식의 내용을 변경할 때 발생합니다.
+        (select, input태그의 type 속성이 checkbox와 radio인 경우)
+
+        2. submit 이벤트: submit 버튼을 누를 때 발생합니다.
+    -->
+    <script>
+        $(function () {
+            $("#my-form").submit(function (event) {
+                const $name = $("#name");
+                const $password = $("#password");
+                let isEmpty = false;
+
+                if ($name.val().trim() === "") {
+                    $name.focus();
+                    $name.next().html("아이디를 입력하세요").css("color", "red");
+                    isEmpty = true;
+                } else {
+                    $name.next().html("");
+                }
+
+                if ($password.val().trim() === "") {
+                    $password.focus();
+                    $password.next().html("비밀번호를 입력하세요").css("color", "red");
+                    isEmpty = true;
+                } else {
+                    $password.next().html("");
+                }
+
+                if (isEmpty) {
+                    return false;
+                }
+
+                alert($name.val().trim() + " : " + $password.val().trim());
+            });
+        });
+    </script>
+</head>
+<body>
+<div>
+    <form id="my-form" action="result.html">
+        <p>
+            <label for="name">User Name</label>
+            <input type="text" name="name" id="name">
+            <span></span>
+        </p>
+        <p>
+            <label for="password">User Password</label>
+            <input type="password" name="password" id=password>
+            <span></span>
+        </p>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+</body>
+</html>

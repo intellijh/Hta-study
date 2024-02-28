@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * {
+            margin: 5px;
+            padding: 5px;
+            border: 3px solid black;
+        }
+    </style>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <!--
+        event.stopPropagation();
+        event.preventDefault();
+        두 가지 메소드를 jQuery에서는 return false로 적용합니다.
+    -->
+    <script>
+        $(function () {
+            $("a").click(function (event) {
+                $(this).css("background-color", "blue");
+                return false;
+            });
+
+            $("div").click(function (event) {
+                $(this).css("background-color", "orange");
+            });
+        });
+    </script>
+</head>
+<body>
+<div>
+    <a href="../d240227/이벤트 강제 발생-trigger-시작종료-개선.html">트리거 예제</a> div 태그
+</div>
+</body>
+</html>

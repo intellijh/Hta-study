@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        input {
+            border: none;
+            width: 100px;
+            height: 40px;
+            color: white;
+            font-weight: bold;
+        }
+        input:hover {
+            opacity: 0.8;
+            cursor: pointer;
+        }
+        input:disabled:hover {
+            opacity: 1;
+            cursor: not-allowed;
+        }
+        #start {
+            background: green;
+        }
+        #start:disabled, #end:disabled {
+            background: gray;
+        }
+        #end {
+            background: red;
+        }
+    </style>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function () {
+            $("h1").click(function () {
+                $(this).html(function (index, html) {
+                    return html + "*";
+                });
+            });
+
+            const $start = $("#start");
+            const $end = $("#end");
+
+            $end.attr("disabled", true);
+            $start.click(function () {
+                timer = setInterval(function () {
+                    $("h1:last").trigger("click");
+                }, 1000);
+                $start.attr("disabled", true).val("시작중...");
+                $end.attr("disabled", false);
+            });
+
+            $end.click(function () {
+                clearInterval(timer);
+                $start.attr("disabled", false).val("트리거 시작");
+                $end.attr("disabled", true);
+            });
+        });
+    </script>
+</head>
+<body>
+<h1>Start:</h1>
+<h1>Start:</h1>
+<input type="button" value="트리거 시작" id="start">
+<input type="button" value="트리거 종료" id="end">
+</body>
+</html>

@@ -87,12 +87,12 @@ function check() {
     //이메일
     if (email.value.trim() === "") {
         alert("E-Mail을 입력하세요")
-        id.focus();
+        email.focus();
         return false;
     }
     if (domain.value.trim() === "") {
         alert("E-Mail을 입력하세요")
-        id.focus();
+        email.focus();
         return false;
     }
 
