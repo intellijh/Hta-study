@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    일반적으로 XML 선언은 XML 문서의 첫 번째 줄에 나타납니다.
+    XML 선언은 필수 항목이 아니지만 사용할 경우 문서에서 첫 번째 줄이어야 하며
+    그 앞에 다른 내용이나 공백이 없어야 합니다
+-->
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+    <!--
+        1. web.xml 파일의 서블릿 관련 부분은 웹 컨테이너에게 어떠한 URL 요청이 서블릿 요청이고
+        그 서블릿 요청이 사용하는 서블릿 클래스는 어떤 것인지 알려주는 파일입니다.
+
+        2. 이 파일을 DD(Deployment Descriptor:배치 서술자)라고 하는데 각 어플리케이션의 환경을 설정하는 부분을 담당합니다.
+
+        3. WEB-INF 디렉토리에 위치합니다.
+
+        4. <servlet></servlet> 태그로 묶인 부분이 각각의 서블릿에 대응하는 서블릿 클래스를 지정하는 부분입니다.
+        <servlet-mapping></servlet-mapping>태그 부분은 URL 상의 요청명과 서블릿을 연결해 주는 부분입니다.
+
+        5. <servlet-name> 태그로 묶인 부분은 서블릿의 이름을 배정한 부분이고
+        <servlet-class>태그로 묶인 부분이 서블릿 이름에 대한 클래스를 명시해 놓은 부분입니다.
+
+        6. <servlet-mapping>태그 안의 <servlet-name>은 반드시 <servlet>태그 안의 <servlet-name>과 일치해야 합니다.
+        <url-pattern>태그로 묶인 부분이 <servlet-name>태그에 명시된 서블릿이 요청되기 위한 주소의 패턴을 입력하는 부분입니다.
+        주소 지정시 "http://서버주소:포트번호/웹 애플리케이션이름"까지 생략하고 그 다음부터 지정합니다.
+
+        브라우저에서 아래와 같이 입력하세요
+        http://localhost:8088/JSP/start
+    -->
+    <servlet>
+        <servlet-name>S_Test</servlet-name>
+        <servlet-class>_1.ServletTest</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>S_Test</servlet-name>
+        <url-pattern>/start</url-pattern>
+    </servlet-mapping>
+</web-app>
