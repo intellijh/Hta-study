@@ -147,6 +147,8 @@ $(function () {
                 alert("형식에 맞게 입력하세요[yymmdd]");
                 $(this).val("").focus();
             }
+        } else {
+            $("input[type=radio]").prop("checked", false);
         }
     });
     $("#jumin2").keyup(function () {
