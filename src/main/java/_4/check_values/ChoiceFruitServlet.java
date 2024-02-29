@@ -33,10 +33,10 @@ public class ChoiceFruitServlet extends HttpServlet {
             fruit=apple.png에서 값을 가져옵니다.
         */
         System.out.println("request.getParameter(\"fruit\") => " + request.getParameter("fruit"));
-        String[] f = request.getParameterValues("fruit");
+        String[] fruits = request.getParameterValues("fruit");
 
         System.out.println("===== 선택한 모든 과일 시작 =====");
-        for (String fruit : f) {
+        for (String fruit : fruits) {
             System.out.println(fruit);
         }
         System.out.println("===== 선택한 모든 과일 끝 =====");
@@ -48,23 +48,52 @@ public class ChoiceFruitServlet extends HttpServlet {
                 "    <style>\n" +
                 "        body {\n" +
                 "            background: black;\n" +
+                "            display: flex;\n" +
+                "            justify-content: center;\n" +
+                "            align-items: center;\n" +
+                "            height: 100vh;\n" +
+                "            margin: 0;\n" +
                 "        }\n" +
                 "        table {\n" +
                 "            background: yellow;\n" +
+                "        }\n" +
+                "        th, td {\n" +
                 "            border: 1px solid black;\n" +
                 "        }\n" +
+                "        th {\n" +
+                "            width: 200px;\n" +
+                "            height: 50px;\n" +
+                "            color: red;\n" +
+                "        }\n" +
+                "        td {\n" +
+                "            width: 200px;\n" +
+                "            height: 150px;\n" +
+                "            text-align: center;\n" +
+                "        }\n" +
+                "\n" +
                 "    </style>\n" +
                 "</head>\n" +
                 "<body>\n" +
                 "<table>\n" +
                 "    <thead>\n" +
-                "    <tr>\n" +
-                "        <th>aa</th><th>bb</th>\n" +
+                "    <tr>\n"
+        );
+        for (String fruit : fruits) {
+            out.println(
+                    "<th>" + fruit + "</th>"
+            );
+        }
+
+        out.println(
                 "    </tr>\n" +
                 "    </thead>\n" +
                 "    <tbody>\n" +
-                "    <tr>\n" +
-                "        <td>aa/td><td>bb/td>" +
+                "    <tr>\n"
+        );
+        for (String fruit : fruits) {
+            out.println("<td><img src='../../image/" + fruit + "'></td>");
+        }
+        out.println(
                 "    </tr>\n" +
                 "    </tbody>\n" +
                 "</table>\n" +
