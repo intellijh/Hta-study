@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>memReg.html</title>
+  <link href="../../css/ch03-1.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<form action="memReg" method="get">
+  <h1>회원가입</h1>
+  <hr>
+  <b>회원명</b>
+  <input type="text" name="name" placeholder="Enter name" required>
+  <b>주소</b>
+  <input type="text" name="addr" placeholder="Enter address" required>
+  <b>전화번호</b>
+  <input type="text" name="tel" placeholder="Enter tel" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}" required>
+  <b>취미</b>
+  <input type="text" name="hobby" placeholder="Enter hobby" required>
+  <div class="clearfix">
+    <button type="submit" class="submitbtn">Submit</button>
+    <button type="reset" class="cancelbtn">Cancel</button>
+  </div>
+</form>
+</body>
+</html>
