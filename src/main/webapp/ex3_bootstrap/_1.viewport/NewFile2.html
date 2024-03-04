@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+        반응 형 웹 디자인이란 무엇입니까?
+        - 모바일 기기에서부터 대형 데스크탑에 이르기까지 모든 장치에 맞게 자동으로 조정되는 웹 사이트를 만드는 것에 관한 것입니다.
+        - 뷰포트는 웹 페이지의 사용자가 볼 수있는 영역입니다.
+        - viewport 요소는 페이지의 크기와 배율을 제어하는 방법에 대한 브라우저 지침을 제공합니다.
+          width = device-width ▶ 페이지의 너비를 장치의 화면 너비에 따라 설정합니다(장치에 따라 다름)
+          initial-scale = 1 ▶ 페이지가 브라우저에 의해 처음 로드 될 때 초기 줌 레벨을 설정하는데 원래 크기를 사용하도록 합니다.
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="NewFile.css" rel="stylesheet" type="text/css">
+    <script src="../../js/jquery-3.7.1.min.js"></script>
+    <script src="validate3.js"></script>
+    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+    <title>유효성 검사</title>
+</head>
+<body>
+<div class="container">
+    <form method="get" action="send.html" name="myform" id="myform">
+        <fieldset>
+            <legend>유효성 검사</legend>
+
+            <label for="id">ID</label>
+            <div>
+                <input type="text" placeholder="Enter ID" name="id" id="id">
+                <input  type=button value="ID중복검사">
+            </div>
+
+            <label for="pass">Password</label>
+            <input type="password" placeholder="Enter Password" name="pass" id="pass">
+
+            <label for="jumin1">주민번호</label>
+            <input type="text" maxlength="6" placeholder="주민번호 앞자리"
+                   name="jumin1" id="jumin1">
+            <b> - </b>
+            <input type="text" maxlength="7" placeholder="주민번호 뒷자리"
+                   name="jumin2" id="jumin2">
+
+            <label for="email">E-Mail</label>
+            <input type="text" name="email" id="email"> @
+            <input type="text" name="domain" id="domain">
+            <select name="sel" id="sel">
+                <option value="">직접입력</option>
+                <option value="naver.com">naver.com</option>
+                <option value="daum.net">daum.net</option>
+                <option value="nate.com">nate.com</option>
+                <option value="gmail.com">gmail.com</option>
+            </select>
+
+            <label for="gender1">성별</label>
+            <div class="container2">
+                <input type="radio" name="gender" value="m" id="gender1">남자
+                <input type="radio" name="gender" value="f" id="gender2">여자
+            </div>
+
+            <label for="hobby1">취미</label>
+            <div class="container2">
+                <input type="checkbox" name="hobby" id="hobby1" value="공부">공부
+                <input type="checkbox" name="hobby" id="hobby2" value="게임">게임
+                <input type="checkbox" name="hobby" id="hobby3" value="운동">운동
+                <input type="checkbox" name="hobby" id="hobby4" value="등산">등산
+                <input type="checkbox" name="hobby" id="hobby5" value="낚시">낚시
+            </div>
+
+            <label for="post1">우편번호</label>
+            <input type="text" size="5" maxLength="5" name="post1" id="post1">
+            <input type="button" value="우편검색" id="postcode">
+
+            <label for="address">주소</label>
+            <input type="text" size="50" name="address" id="address">
+
+            <label for="intro">자기소개</label>
+            <textarea rows="10" cols="75" name="intro" id="intro"></textarea>
+
+            <div class="clearfix">
+                <button type="submit" class="signupbtn">회원가입</button>
+                <button type="reset" class="cancelbtn">취소</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+</body>
+</html>

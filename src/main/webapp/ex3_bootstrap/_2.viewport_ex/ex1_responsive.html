@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    body {
+        background-color: lightgreen;
+    }
+    /*
+        미디어 쿼리는 CSS3에서 도입 된 CSS 기술입니다.
+        @media 의 조건에 맞으면 해당 스타일을 적용합니다.
+
+        1. 미디어 종류
+            screen : 컴퓨터 스크린, 태블릿, 모바일 기기
+            print : 프린터에 사용
+            speech : 페이지를 읽어 주는 화면 낭독기
+        2. max-width : 최대 너비
+        3. min-width : 최소 너비
+    */
+    @media screen and (max-width: 600px){
+        body {
+            background-color: lightblue;
+        }
+    }
+
+    @media screen and (min-width: 601px) and (max-width: 900px){
+        body {
+            background-color: lightgray;
+        }
+    }
+</style>
+</head>
+<body>
+<p>
+    브라우저 사이즈가 최대 600px 까지는 lightblue<br>
+    601px ~ 900px 까지는 lightgray<br>
+    그 외는 lightgreen
+</p>
+<script>
+    window.onresize = function () {
+        /*
+        * window.innerWidth : 브라우저 화면의 너비
+        * window.innerHeight : 브라우저 화면의 높이
+        */
+        document.body.innerHTML = "window.innerWidth: " + window.innerWidth;
+    };
+</script>
+</body>
+</html>
