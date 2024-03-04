@@ -1,13 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+<%--
+  Created by IntelliJ IDEA.
+  User: user
+  Date: 2024-03-04
+  Time: 오후 6:55
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
-    <meta charset="UTF-8">
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
-<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">-->
-<!--    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>-->
-<!--    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>-->
-<!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>-->
-    <title>Title</title>
+    <title>Success</title>
     <style>
         table {
             width: 600px;
@@ -28,7 +29,7 @@
         <tbody>
         <tr>
             <td>아이디</td>
-            <td> </td>
+<%--            <td><%=session.getAttribute("id")%></td>--%>
         </tr>
         <tr>
             <td>비밀번호</td>

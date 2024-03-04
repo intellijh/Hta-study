@@ -98,6 +98,10 @@ $(function () {
         }
     });
 
+    $("#myform").submit(function () {
+
+    });
+
     const idCheck = "#myform > fieldset > div:nth-child(3) > input[type=button]:nth-child(2)";
     $(idCheck).click(function () {
         const $id = $("#id");
