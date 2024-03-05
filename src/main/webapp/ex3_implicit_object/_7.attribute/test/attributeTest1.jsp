@@ -46,21 +46,23 @@
         <tbody>
         <tr>
             <td class="key">e-mail 주소</td>
-            <td class="value"><input type="text" name="email"></td>
+            <td class="value"><input type="text" name="email" id="email"></td>
         </tr>
         <tr>
             <td class="key">집 주소</td>
-            <td class="value"><input type="text" name="address"></td>
+            <td class="value"><input type="text" name="address" id="address"></td>
         </tr>
         <tr>
             <td class="key">전화번호</td>
-            <td class="value"><input type="text" name="tel"></td>
+            <td class="value"><input type="text" name="tel" id="tel"></td>
         </tr>
         <tr>
             <td colspan="2"><button type="submit" name="submit">전송</button></td>
         </tr>
         </tbody>
     </table>
+    <%application.setAttribute("name", request.getParameter("name"));%>
+    <%application.setAttribute("id", request.getParameter("id"));%>
 </form>
 </body>
 </html>

@@ -33,11 +33,11 @@
     <tbody>
     <tr>
         <td class="key">이름</td>
-        <td class="value"><%=application.getInitParameter("name")%></td>
+        <td class="value"><%=application.getAttribute("name")%></td>
     </tr>
     <tr>
         <td class="key">아이디</td>
-        <td class="value"></td>
+        <td class="value"><%=application.getAttribute("id")%></td>
     </tr>
     </tbody>
 </table>
@@ -51,15 +51,15 @@
     <tbody>
     <tr>
         <td class="key">e-mail</td>
-        <td class="value"><%=application.getInitParameter("name")%></td>
+        <td class="value"><%=session.getAttribute("email")%></td>
     </tr>
     <tr>
         <td class="key">address</td>
-        <td class="value"></td>
+        <td class="value"><%=session.getAttribute("address")%></td>
     </tr>
     <tr>
         <td class="key">tel</td>
-        <td class="value"></td>
+        <td class="value"><%=session.getAttribute("tel")%></td>
     </tr>
     </tbody>
 </table>
