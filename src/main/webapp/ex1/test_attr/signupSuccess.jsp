@@ -29,39 +29,39 @@
         <tbody>
         <tr>
             <td>아이디</td>
-            <td><%=session.getAttribute("id")%></td>
+            <td><%=request.getAttribute("id")%></td>
         </tr>
         <tr>
             <td>비밀번호</td>
-            <td><%=session.getAttribute("pass")%></td>
+            <td><%=request.getAttribute("pass")%></td>
         </tr>
         <tr>
             <td>주민번호</td>
-            <td><%=session.getAttribute("jumin")%></td>
+            <td><%=request.getAttribute("jumin")%></td>
         </tr>
         <tr>
             <td>이메일</td>
-            <td><%=session.getAttribute("email")%></td>
+            <td><%=request.getAttribute("email")%></td>
         </tr>
         <tr>
             <td>성별</td>
-            <td><%=session.getAttribute("gender")%></td>
+            <td><%=request.getAttribute("gender")%></td>
         </tr>
         <tr>
             <td>취미</td>
-            <td><%=session.getAttribute("hobby")%></td>
+            <td><%=request.getAttribute("hobby")%></td>
         </tr>
         <tr>
             <td>우편번호</td>
-            <td><%=session.getAttribute("post")%></td>
+            <td><%=request.getAttribute("post")%></td>
         </tr>
         <tr>
             <td>주소</td>
-            <td><%=session.getAttribute("address")%></td>
+            <td><%=request.getAttribute("address")%></td>
         </tr>
         <tr>
             <td>자기소개</td>
-            <td><%=session.getAttribute("intro")%></td>
+            <td><%=request.getAttribute("intro")%></td>
         </tr>
         </tbody>
     </table>

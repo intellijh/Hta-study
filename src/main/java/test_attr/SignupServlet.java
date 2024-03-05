@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-@WebServlet("/ex1/test_attr/send")
+//@WebServlet("/ex1/test_attr/send")
 public class SignupServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -33,6 +33,6 @@ public class SignupServlet extends HttpServlet {
         session.setAttribute("address", request.getParameter("address"));
         session.setAttribute("intro", request.getParameter("intro"));
 
-        response.sendRedirect("signupSuccess.jsp");
+//        response.sendRedirect("signupSuccess.jsp");
     }
 }
