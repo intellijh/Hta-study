@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>application</title>
     <style>
         table {
             text-align: center;
@@ -27,10 +27,10 @@
         tr:last-child {
             background: green;
         }
-        input[type="button"] {
-            width: 12%;
-            height: 40%;
-            font-size: 1.1em;
+        button {
+            width: 60px;
+            height: 40px;
+            font-size: 1em;
         }
     </style>
 </head>
@@ -53,7 +53,7 @@
             <td class="value"><input type="text" name="id"></td>
         </tr>
         <tr>
-            <td colspan="2"><input type="button" name="submit" value="전송"></td>
+            <td colspan="2"><button type="submit" name="submit">전송</button></td>
         </tr>
         </tbody>
     </table>
