@@ -23,7 +23,7 @@
         <%
         } else {
             session.setAttribute("id",id);
-            Cookie cookie = new Cookie("checkbox", request.getParameter("remember"));
+            Cookie cookie = new Cookie("rememberId", request.getParameter("remember"));
             cookie.setMaxAge(60 * 60 * 24);
             response.addCookie(cookie);
         %>

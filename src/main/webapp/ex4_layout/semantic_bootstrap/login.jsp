@@ -36,14 +36,14 @@
     </form>
 </div>
 <%
-    String rememberId = "not store";
+    String rememberId = "notStore";
     String cookie = request.getHeader("Cookie");
 
     if (cookie != null) {
         Cookie[] cookies = request.getCookies();
 
         for (Cookie c : cookies) {
-            if (c.getName().equals("checkbox")) {
+            if (c.getName().equals("rememberId")) {
                 rememberId = c.getValue();
             }
         }
@@ -51,11 +51,19 @@
 %>
 <script>
     $(function () {
+        const $remember = $("#remember");
+
         const rememberId = '<%=rememberId%>';
-        if (rememberId === 'store') {
-            $("#remember").prop("checked", true);
+        if (rememberId === "store") {
+            $remember.prop("checked", true);
         } else {
-            $("#remember").prop("checked", false);
+            $remember.prop("checked", false);
+        }
+
+        if ($remember.prop("checked")) {
+            $remember.val("store");
+        } else {
+            $remember.val("notStore");
         }
     });
 </script>
