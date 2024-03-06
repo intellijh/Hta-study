@@ -36,7 +36,8 @@
     </form>
 </div>
 <%
-    String rememberId = "notStore";
+    String rememberId = "";
+    String id = "";
     String cookie = request.getHeader("Cookie");
 
     if (cookie != null) {
@@ -45,6 +46,8 @@
         for (Cookie c : cookies) {
             if (c.getName().equals("rememberId")) {
                 rememberId = c.getValue();
+            } else if (c.getName().equals("id")) {
+                id = c.getValue();
             }
         }
     }
@@ -52,34 +55,14 @@
 <script>
     $(function () {
         const $remember = $("#remember");
+        const cookieId = "<%=id%>";
+        const rememberId = "<%=rememberId%>";
 
-        const rememberId = '<%=rememberId%>';
         if (rememberId === "store") {
+            $("#id").val(cookieId);
             $remember.prop("checked", true);
-        } else {
-            $remember.prop("checked", false);
-        }
-
-        if ($remember.prop("checked")) {
-            $remember.val("store");
-        } else {
-            $remember.val("notStore");
         }
     });
 </script>
-<%--
-<form action="login_ok.jsp" method="post">
-    <h1>로그인 </h1>
-    <hr>
-    <b>아이디</b>
-    <input type="text" name="id" placeholder="Enter id" required>
-    <b>비밀번호</b>
-    <input type="text" name="passwd" placeholder="Enter password" required>
-    <div class="clearfix">
-        <button type="submit" class="submitbtn">Submit</button>
-        <button type="reset" class="cancelbtn">Cancel</button>
-    </div>
-</form>
---%>
 </body>
 </html>

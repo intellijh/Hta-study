@@ -23,9 +23,12 @@
         <%
         } else {
             session.setAttribute("id",id);
-            Cookie cookie = new Cookie("rememberId", request.getParameter("remember"));
-            cookie.setMaxAge(60 * 60 * 24);
-            response.addCookie(cookie);
+            Cookie rememberCookie = new Cookie("rememberId", request.getParameter("remember"));
+            rememberCookie.setMaxAge(60 * 60 * 24);
+            response.addCookie(rememberCookie);
+            Cookie idCookie = new Cookie("id", request.getParameter("id"));
+            idCookie.setMaxAge(60 * 60 * 24);
+            response.addCookie(idCookie);
         %>
         alert("<%=request.getParameter("id")%>님 환영합니다");
         location.href = "templatetest.jsp";
