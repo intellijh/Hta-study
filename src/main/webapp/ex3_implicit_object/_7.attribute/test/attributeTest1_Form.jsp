@@ -27,9 +27,9 @@
         tr:last-child {
             background: green;
         }
-        button {
-            width: 60px;
-            height: 40px;
+        input[type="submit"] {
+            width: 15%;
+            height: 80%;
             font-size: 1em;
         }
     </style>
@@ -53,7 +53,7 @@
             <td class="value"><input type="text" name="id"></td>
         </tr>
         <tr>
-            <td colspan="2"><button type="submit" name="submit">전송</button></td>
+            <td colspan="2"><input type="submit" name="submit" value="전송"></td>
         </tr>
         </tbody>
     </table>

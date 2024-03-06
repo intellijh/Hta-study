@@ -74,6 +74,7 @@
         <location> : 에러 페이지의 위치를 지정
         <exception-type> : 예외 종류
     -->
+<!--
     <error-page>
         <error-code>404</error-code>
         <location>/ex3_implicit_object/_6.exception/error/error404.jsp</location>
@@ -86,4 +87,15 @@
         <exception-type>java.lang.NullPointerException</exception-type>
         <location>/ex3_implicit_object/_6.exception/error/errorNullPointer.jsp</location>
     </error-page>
+-->
+    <context-param>
+        <description>아이디</description>
+        <param-name>id</param-name>
+        <param-value>jsp</param-value>
+    </context-param>
+    <context-param>
+        <description>비밀번호</description>
+        <param-name>password</param-name>
+        <param-value>jsp</param-value>
+    </context-param>
 </web-app>

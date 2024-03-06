@@ -27,9 +27,9 @@
         tr:last-child {
             background: green;
         }
-        button {
-            width: 60px;
-            height: 40px;
+        input[type="submit"] {
+            width: 15%;
+            height: 80%;
             font-size: 1em;
         }
     </style>
@@ -37,7 +37,11 @@
 <body>
 <form action="attributeTest2.jsp" method="post">
     <table>
-        <caption><h2>영역과 속성 테스트</h2></caption>
+        <caption>
+            <h2>영역과 속성 테스트</h2>
+            <h3><%=application.getAttribute("name")%>님 반갑습니다.</h3>
+            <h3><%=application.getAttribute("name")%>님의 아이디는 <%=application.getAttribute("id")%>입니다.</h3>
+        </caption>
         <thead>
         <tr>
             <td colspan="2">Session 영역에 저장할 내용들</td>
@@ -57,7 +61,7 @@
             <td class="value"><input type="text" name="tel" id="tel"></td>
         </tr>
         <tr>
-            <td colspan="2"><button type="submit" name="submit">전송</button></td>
+            <td colspan="2"><input type="submit" name="submit" value="전송"></td>
         </tr>
         </tbody>
     </table>

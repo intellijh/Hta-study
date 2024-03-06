@@ -10,7 +10,7 @@
 </head>
 <body>
 <h1>영역과 속성 테스트</h1>
-<h2>님의 정보가 모두 저장되었습니다.</h2>
+<h2><%=application.getAttribute("name")%>님의 정보가 모두 저장되었습니다.</h2>
 <a href="attributeTest3.jsp">확인하러 가기</a>
 <%session.setAttribute("email", request.getParameter("email"));%>
 <%session.setAttribute("address", request.getParameter("address"));%>
