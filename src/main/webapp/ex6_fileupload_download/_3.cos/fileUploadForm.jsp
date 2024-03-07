@@ -1,5 +1,4 @@
-<%-- webapp 폴더 아래 "upload" 폴더 생성 후 실행하세요~ --%>
-<%--
+<%-- webapp 폴더 아래 "upload" 폴더 생성 후 실행하세요~
     일반 파라미터를 전송할 때 사용하는 인코딩과 파일을 업로드 할 때 사용하는 인코딩은 다릅니다.
     POST방식은 다음의 두 가지 인코딩 방식에 따라서 전송하는 데이터 형식이 달라집니다.
     1. application/x-www-form-urlencoded
@@ -8,8 +7,7 @@
     지금까지의 예제들은 1번 인코딩을 사용해서 데이터를 전송했습니다.
     파일을 업로드 하기 위해서는 2번 인코딩을 사용해야 합니다.
     form 태그의 enctype 속성 값을 "multipart/form-data"로 지정해주면됩니다.
-    method는 post방식 입니다.
---%>
+    method는 post방식 입니다.--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
