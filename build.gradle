@@ -22,10 +22,13 @@ tasks.withType(JavaCompile) {
 }
 
 dependencies {
-    compileOnly('jakarta.servlet:jakarta.servlet-api:6.0.0')
+    compileOnly('jakarta.servlet:jakarta.servlet-api:5.0.0')
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+    implementation files('libs/cos_2.jar')
+    implementation files('libs/activation-1.1.jar')
+    implementation files('libs/mail-1.4.7.jar')
 }
 
 test {
