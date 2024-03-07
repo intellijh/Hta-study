@@ -23,12 +23,17 @@
         <%
         } else {
             session.setAttribute("id",id);
-            Cookie rememberCookie = new Cookie("rememberId", request.getParameter("remember"));
-            rememberCookie.setMaxAge(60 * 60 * 24);
-            response.addCookie(rememberCookie);
-            Cookie idCookie = new Cookie("id", request.getParameter("id"));
-            idCookie.setMaxAge(60 * 60 * 24);
-            response.addCookie(idCookie);
+
+            String checkId = request.getParameter("remember");
+            Cookie cookie = new Cookie("id", request.getParameter("id"));
+
+            if (checkId != null && checkId.equals("store")){
+                cookie.setMaxAge(60 * 60 * 24);
+                response.addCookie(cookie);
+            } else{
+                cookie.setMaxAge(0);
+                response.addCookie(cookie);
+            }
         %>
         alert("<%=request.getParameter("id")%>님 환영합니다");
         location.href = "templatetest.jsp";

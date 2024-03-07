@@ -9,7 +9,46 @@
     <style>
         .container{margin:3em auto; border:1px solid lightgray;width:500px}
     </style>
+    <%
+        String id = "";
+        String cookie = request.getHeader("Cookie");
 
+        if (cookie != null) {
+            Cookie[] cookies = request.getCookies();
+
+            for (Cookie c : cookies) {
+                if (c.getName().equals("id")) {
+                    id = c.getValue();
+                }
+            }
+        }
+    %>
+    <script>
+        $(function () {
+            const id = "<%=id%>";
+
+            if (id) {
+                $("#id").val(id).css("font-weight", "bold");
+                $("#remember").prop("checked", true);
+            }
+
+            $("form").submit(function () {
+                const $id = $("#id");
+                if (!$.trim($id.val())) {
+                    alert("아어디를 입력하세요");
+                    $id.focus();
+                    return false;
+                }
+
+                const $pass = $("#pass");
+                if (!$.trim($pass.val())) {
+                    alert("비델번호를 업럭하서요");
+                    $pass.focus();
+                    return false;
+                }
+            });
+        });
+    </script>
 </head>
 <body>
 <div class="container">
@@ -35,34 +74,5 @@
 
     </form>
 </div>
-<%
-    String rememberId = "";
-    String id = "";
-    String cookie = request.getHeader("Cookie");
-
-    if (cookie != null) {
-        Cookie[] cookies = request.getCookies();
-
-        for (Cookie c : cookies) {
-            if (c.getName().equals("rememberId")) {
-                rememberId = c.getValue();
-            } else if (c.getName().equals("id")) {
-                id = c.getValue();
-            }
-        }
-    }
-%>
-<script>
-    $(function () {
-        const $remember = $("#remember");
-        const cookieId = "<%=id%>";
-        const rememberId = "<%=rememberId%>";
-
-        if (rememberId === "store") {
-            $("#id").val(cookieId);
-            $remember.prop("checked", true);
-        }
-    });
-</script>
 </body>
 </html>
