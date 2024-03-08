@@ -32,7 +32,7 @@
  	<tr>
  		<td>파일명1</td>
  		<td>
- 		<a href = "<%=request.getContextPath()%>/down?file_name=<%=systemName1 %>"><%=origfileName1 %>
+ 		<a href="<%=request.getContextPath()%>/down?file_name=<%=systemName1 %>"><%=origfileName1 %>
  		</a>
  		</td>
  	</tr>
@@ -40,7 +40,7 @@
  	<tr>
  		<td>파일명2</td>
  		<td>
- 		<a href = "<%=request.getContextPath()%>/down?file_name=<%=systemName2 %>"><%=origfileName2 %>
+ 		<a href="<%=request.getContextPath()%>/down?file_name=<%=systemName2 %>"><%=origfileName2 %>
  		</a>
  		</td>
  	</tr>

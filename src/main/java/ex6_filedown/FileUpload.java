@@ -15,7 +15,7 @@ public class FileUpload extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String uploadPath = request.getSession().getServletContext().getRealPath("upload");
-        System.out.println("uploadPath2 = " + uploadPath);
+        System.out.println("uploadPath = " + uploadPath);
 
         int size = 10 * 1024 * 1024; //파일 최대 크기를 10MB로 지정합니다.
 

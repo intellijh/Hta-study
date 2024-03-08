@@ -17,8 +17,7 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet("/down")
 public class FileDown extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-   
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		String fileName = request.getParameter("file_name");
@@ -83,5 +82,31 @@ public class FileDown extends HttpServlet {
 		   	  
 		 */
 		response.setHeader("Content-Disposition","attachment; filename=" + sEncoding);
+		// response.setHeader("Content-Disposition", "inline; filename=" + sEncoding);
+
+		/*
+			1. try-with-resource문으로 try()괄호 안에 선먼된 자원은 try문이 끝날 때 자동으로 close()메서드를 호출합니다.
+
+			2. try-with-resource운머 의해 자동으로 각체의 close()가 호출월 수 있으려면 글래스가
+				AutoCloseable이라는 인터페이스를 구현한 것이어야 합니다.
+				형식) try(){
+					} catch(){
+					} finally{}
+		*/
+		try (//웹 브라우저로의 출력 스트림을 생성합니다.
+			 BufferedOutputStream out2 = new BufferedOutputStream(response.getOutputStream());
+
+			 //sFilePath로 지정한 파일에 대한 입력 스트림을 생성합니다.
+			 BufferedInputStream in = new BufferedInputStream(new FileInputStream(sFilePath));) {
+			int numRead;
+
+			//read(b, 0, b.length) : 바이트 배열 b의 0번부터 b.length 크기 만큼 읽어옵니다.
+			while ((numRead = in.read(b, 0, b.length)) != -1) { //읽을 데이터가 존재하는 경우
+				out2.write(b, 0, numRead); //바이트 배열 b의 0번부터 numRead 크기만큼 브라우저로 출력
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}//doPost() end
 }//class end

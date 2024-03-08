@@ -4,7 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <link href="NewFile.css" rel="stylesheet" type="text/css">
-    <script src="../../js/jquery-3.7.1.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<%--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">--%>
+<%--    <script src="../../js/jquery-3.7.1.min.js"></script>--%>
+<%--    <script src="js/jquery-3.7.1.min.js"></script>--%>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
     <script src="validate3.js"></script>
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
     <title>유효성 검사</title>
