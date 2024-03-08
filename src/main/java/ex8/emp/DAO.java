@@ -4,7 +4,6 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import java.sql.*;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /*
@@ -98,17 +97,20 @@ public class DAO {
                             "FROM emp " +
                             "WHERE " + menu + " LIKE ?";
 
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초");
-            Date date = formatter.parse(input);
+//            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+//            java.util.Date date = formatter.parse(input);
 
             //PreparedStatement 객체 얻기
             pstmt = conn.prepareStatement(select_sql);
 
+            System.out.println(menu);
+/*
             if (menu.equals("hiredate")) {
-                pstmt.setString(1, "%" + input + "%");
+                pstmt.setString(1, "%" + date.toString() + "%");
             } else {
-                pstmt.setDate(1, "%" + input + "%");
-            }
+                pstmt.setString(1, "%" + input + "%");
+            }*/
+            pstmt.setString(1, "%" + input + "%");
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
