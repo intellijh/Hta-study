@@ -97,19 +97,17 @@ public class DAO {
                             "FROM emp " +
                             "WHERE " + menu + " LIKE ?";
 
-//            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-//            java.util.Date date = formatter.parse(input);
+            if (menu.equals("hiredate")) {
+                select_sql =
+                        "SELECT *\n" +
+                        "FROM emp\n" +
+                        "WHERE TO_CHAR(HIREDATE,'yyyy-MM-dd') LIKE ?";
+            }
 
             //PreparedStatement 객체 얻기
             pstmt = conn.prepareStatement(select_sql);
 
-            System.out.println(menu);
-/*
-            if (menu.equals("hiredate")) {
-                pstmt.setString(1, "%" + date.toString() + "%");
-            } else {
-                pstmt.setString(1, "%" + input + "%");
-            }*/
+            System.out.println(input);
             pstmt.setString(1, "%" + input + "%");
             rs = pstmt.executeQuery();
 
