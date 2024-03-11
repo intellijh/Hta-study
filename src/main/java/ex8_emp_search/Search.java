@@ -21,14 +21,17 @@ public class Search extends HttpServlet {
         String[] menus = { "empno", "ename", "job", "mgr", "hiredate", "sal", "comm", "deptno" };
         String input = (String) request.getParameter("search").toUpperCase();
 
-        ArrayList<Emp> list;
+        ArrayList<Emp> list = list = dao.select(menus[menuIndex], input);
+/*
         if (input.equals("")) {
             list = dao.selectAll();
         } else {
             list = dao.select(menus[menuIndex], input);
         }
+*/
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/ex8_db/_2.list.emp/list.jsp");
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("/ex8_db/_2.list.emp/list.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/ex8_db/_2.list.emp/list_el.jsp");
         request.setAttribute("list", list);
         dispatcher.forward(request, response);
     }

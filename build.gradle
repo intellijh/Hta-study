@@ -32,6 +32,8 @@ dependencies {
     implementation files('libs/ojdbc6.jar')
     implementation files('libs/jsp-api.jar')
     implementation files('libs/servlet-api.jar')
+    implementation files('libs/jakarta.servlet.jsp.jstl-3.0.1.jar')
+    implementation files('libs/jakarta.servlet.jsp.jstl-api-3.0.0.jar')
 }
 
 test {
