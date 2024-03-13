@@ -10,6 +10,5 @@ import java.io.IOException;
 //Action : 인터페이스 명
 //ActionForward : 반환형
 public interface Action {
-    public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException;
+    public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 }

@@ -3,30 +3,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="NewFile.css" rel="stylesheet" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<%--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">--%>
-<%--    <script src="../../js/jquery-3.7.1.min.js"></script>--%>
-<%--    <script src="js/jquery-3.7.1.min.js"></script>--%>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
-    <script src="validate3.js"></script>
+    <style>
+        #opener_message {
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+    </style>
+    <link href="${pageContext.request.contextPath}/css/NewFile.css" rel="stylesheet" type="text/css">
+    <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/validate.js"></script>
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
     <title>유효성 검사</title>
 </head>
 <body>
 <div class="container">
-    <form method="post" action="send" name="myform" id="myform">
+    <form method="post" action="joinProcess.net" name="myform" id="myform">
         <fieldset>
             <legend>유효성 검사</legend>
 
             <label for="id">ID</label>
             <div>
-                <input type="text" placeholder="Enter ID" name="id" id="id">
-                <input  type=button value="ID중복검사">
+                <input type="text" placeholder="Enter ID" name="id" id="id" maxlength="20">
+                <input  type=button value="ID중복검사" id="idcheck">
+                <div id="opener_message"></div><input type="hidden" id="result">
             </div>
 
             <label for="pass">Password</label>
-            <input type="password" placeholder="Enter Password" name="pass" id="pass">
+            <input type="password" placeholder="Enter Password" name="pass" id="pass" maxlength="20">
 
             <label for="jumin1">주민번호</label>
             <input type="text" maxlength="6" placeholder="주민번호 앞자리"

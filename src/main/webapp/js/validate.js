@@ -1,23 +1,35 @@
 $(function () {
     $("#myform").submit(function () {
-        const $id = $("#id");
-        const $pass = $("#pass");
-        const $jumin1 = $("#jumin1");
-        const $jumin2 = $("#jumin2");
-        const $email = $("#email");
-        const $domain = $("#domain");
-        const $gender = $("input:radio:checked");
-        const $hobbys = $("input:checkbox:checked");
-        const $post = $("#post1");
-        const $address = $("#address");
-        const $intro = $("#intro");
-
-        if ($.trim($id.val()) === "") {
+        const id = $("#id");
+        if ($.trim(id.val()) === "") {
             alert("ID를 입력하세요")
-            $id.focus();
+            id.focus();
             return false;
         }
+
+        if (!id.prop("readOnly")) {
+            //회원가입 폼과 정보 수정 폼에서 동시에 사용할 js입니다.
+            //회원가입 폼에서만 사용할 문장들 입니다.
+            //정보 수정 폼에서는 아이디를 수정하지 않기 때문에 필요없는 부분입니다.
+            console.log(id.prop("readOnly"));
+            const submit_id_value = $.trim(id.val());
+            if (submit_id_value !== idcheck_value) { //submit 당시 아이디 값과 아이디 중복검사에 사용된 아이디 비교
+                alert("ID 중복검사를 하세요");
+                $("#opener_message").text("");
+                return false;
+            }
+        }
+
+        const result = $("#result").val();
+        if (result === "-1") {
+            alert("입력하신 아이디는 이미 사용 중입니다.");
+            id.val("").focus();
+            $("#opener_message").text("");
+            return false;
+        }
+
         //Password
+        const $pass = $("#pass");
         if ($.trim($pass.val()) === "") {
             alert("Password를 입력하세요")
             $pass.focus();
@@ -25,6 +37,7 @@ $(function () {
         }
 
         // 주민번호
+        const $jumin1 = $("#jumin1");
         if ($.trim($jumin1.val()) === "") {
             alert("주민번호 앞자리를 입력하세요")
             $jumin1.focus();
@@ -35,6 +48,7 @@ $(function () {
             $jumin1.val("").focus;
             return false;
         }
+        const $jumin2 = $("#jumin2");
         if ($.trim($jumin2.val()) === "") {
             alert("주민번호 뒷자리를 입력하세요");
             $jumin2.focus();
@@ -47,11 +61,13 @@ $(function () {
         }
 
         //이메일
+        const $email = $("#email");
         if ($.trim($email.val()) === "") {
             alert("E-Mail을 입력하세요")
             $email.focus();
             return false;
         }
+        const $domain = $("#domain");
         if ($.trim($domain.val()) === "") {
             alert("E-Mail을 입력하세요")
             $domain.focus();
@@ -59,6 +75,7 @@ $(function () {
         }
 
         //성별
+        const $gender = $("input:radio:checked");
         if ($gender.length === 0) {
             alert("성별을 체크해주세요")
             $("#gender1").focus();
@@ -66,12 +83,14 @@ $(function () {
         }
 
         //취미
+        const $hobbys = $("input:checkbox:checked");
         if ($hobbys.length < 2) {
             alert("취미를 2개 이상 선택하세요")
             return false;
         }
 
         // 우편번호
+        const $post = $("#post1");
         if ($.trim($post.val()) === "") {
             alert("우편번호를 입력하세요")
             $post.focus();
@@ -84,6 +103,7 @@ $(function () {
         }
 
         // 주소
+        const $address = $("#address");
         if ($.trim($address.val()) === "") {
             alert("주소를 입력하세요");
             $address.focus();
@@ -91,6 +111,7 @@ $(function () {
         }
 
         // 자기소개
+        const $intro = $("#intro");
         if ($.trim($intro.val()) === "") {
             alert("자기소개를 입력하세요")
             $intro.focus();
@@ -98,27 +119,26 @@ $(function () {
         }
     });
 
-    const idCheck = "#myform > fieldset > div:nth-child(3) > input[type=button]:nth-child(2)";
-    $(idCheck).click(function () {
-        const $id = $("#id");
-        const $id_value = $.trim($id.val());
-        const reg = /^[A-Z][A-Za-z0-9_]{4,}$/;
+    let idcheck_value = "";
+    $("#idcheck").click(function () {
+        const id = $("#id");
+        const id_value = $.trim(id.val());
 
-        // ID
-        if ($id_value === "") {
-            alert("ID를 입력하세요")
-            $id.focus();
+        if (id_value === "") {
+            alert("ID를 입력하세요");
+            id.focus();
             return false;
+        } else {
+            pattern = /^[A-Z][A-Za-z0-9_]{4,19}$/;
+            if (pattern.test(id_value)) {
+                idcheck_value = id_value;
+                const ref = "idcheck.net?id=" + id_value;
+                window.open(ref, "idcheck", "width=350, height=200");
+            } else {
+                alert("첫글자는 대문자이고 두번째부터는 대소문자, 숫자, _로 총 4~20자 입니다.");
+                id.val("").focus();
+            }
         }
-        if (!reg.test($id_value)) {
-            alert("첫글자는 대문자이고 두번째부터는 대소문자, 숫자, _로 총 4개 이상이어야 합니다.");
-            return false;
-        }
-
-        const openWin = window.open(`idcheck.html?id=${$id_value}`, "아이디 중복 검사", "width=300, height=250");
-        $(openWin).on("load", function() {
-            $(openWin.document).find("#id").val($id_value);
-        });
     });
 
     // 우편검색 버튼 클릭
