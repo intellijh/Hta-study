@@ -191,13 +191,13 @@ public class DAO {
             DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/OracleDB");
             conn = ds.getConnection();
 
-            String insert_sql =
+            String update_sql =
                             "UPDATE template_join\n" +
                             "SET password = ?, jumin = ?, email = ?, gender = ?,\n" +
                             "    hobby = ?, post = ?, address = ?, intro = ?\n" +
                             "WHERE id = ?";
 
-            pstmt = conn.prepareStatement(insert_sql);
+            pstmt = conn.prepareStatement(update_sql);
             pstmt.setString(1, join.getPassword());
             pstmt.setString(2, join.getJumin());
             pstmt.setString(3, join.getEmail());
@@ -291,7 +291,42 @@ public class DAO {
         return null;
     }
 
-    public int delete() {
-        return 0;
+    public int delete(String id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        int result = 0;
+
+        try {
+            Context init = new InitialContext();
+            DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/OracleDB");
+            conn = ds.getConnection();
+
+            String insert_sql =
+                    "DELETE template_join\n" +
+                    "WHERE id = ?";
+
+            pstmt = conn.prepareStatement(insert_sql);
+            pstmt.setString(1, id);
+            result = pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        }
+
+        return result;
     }
 }
