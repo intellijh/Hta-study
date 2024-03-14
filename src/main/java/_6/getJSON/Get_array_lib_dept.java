@@ -21,24 +21,14 @@ public class Get_array_lib_dept extends HttpServlet {
 
         DAO dao = new DAO();
         ArrayList<Dept> depts = dao.selectAll();
-
-        JsonObject json = new JsonObject();
-        json.addProperty("name", "홍길동");
-
-        JsonObject json2 = new JsonObject();
-        json2.addProperty("name", "이순신");
-
-        JsonObject json3 = new JsonObject();
-        json2.addProperty("name", "이순신");
-
-        JsonObject json4 = new JsonObject();
-        json2.addProperty("name", "이순신");
-
         JsonArray array = new JsonArray();
-        array.add(json);
-        array.add(json2);
-        array.add(json3);
-        array.add(json4);
+        for (Dept dept : depts) {
+            JsonObject json = new JsonObject();
+            json.addProperty("deptno", dept.getDeptno());
+            json.addProperty("dname", dept.getDname());
+            json.addProperty("loc", dept.getLoc());
+            array.add(json);
+        }
 
         System.out.println(array);
         response.getWriter().print(array);

@@ -7,9 +7,6 @@
         #error {
             color: green;
         }
-        #com {
-            color: blue;
-        }
     </style>
     <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
     <script>
@@ -24,7 +21,7 @@
                     success: function (rdata) {
                         let output = "";
                         output +=
-                                "<table>" +
+                                "<table class='table'>" +
                                 "<thead>" +
                                 "   <tr>" +
                                 "       <th>부서번호</th>" +
@@ -35,11 +32,11 @@
                                 "<tbody>";
                         $(rdata).each(function () {
                             output +=
-                                    "   <tr>" +
-                                    "       <td>this.deptno</td>" +
-                                    "       <td>this.dname</td>" +
-                                    "       <td>this.loc</td>" +
-                                    "   </tr>";
+                                "   <tr>" +
+                                "       <td>" + this.deptno + "</td>" +
+                                "       <td>" + this.dname + "</td>" +
+                                "       <td>" + this.loc + "</td>" +
+                                "   </tr>";
                         });
                         output +=
                                 "</tbody>" +
@@ -54,7 +51,6 @@
                             + "error 메세지 : " + error + "</div>");
                     },
                     complete: function () {
-                        $("body .container").append("<div id='com'>Ajax가 완료되었습니다.</div>");
                         console.log("ajax() - complete");
                     }
                 });
