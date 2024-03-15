@@ -29,8 +29,24 @@ public class MemberLoginProcessAction implements Action {
             Cookie cookie = new Cookie("id", id);
 
             if (IDStore != null && IDStore.equals("store")) {
-                cookie.setMaxAge(3 * 60);
+                cookie.setMaxAge(2 * 60);
+                response.addCookie(cookie);
+                System.out.println("쿠키 확인");
+            } else {
+                cookie.setMaxAge(0);
+                response.addCookie(cookie);
             }
+
+            forward.setRedirect(true);
+            forward.setPath("BoardList.bo");
+            return forward;
+        } else {
+            String message = "비밀번호가 일치하지 않습니다.";
+            if (result == -1) {
+                message = "아이디가 존재하지 않습니다.";
+            }
+
+            response.setContentType("text/html;charset=utf-8");
         }
         return null;
     }
