@@ -45,6 +45,35 @@ public class MemberDAO {
         return result;
     }
 
+    public int isId(String id, String pass) {
+        int result = -1; //아이디 미존재
+        String sql =
+                "SELECT id, password\n" +
+                "FROM member\n" +
+                "WHERE id = ?";
+
+        try (Connection conn = ds.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, id);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    if (rs.getString(2).equals(pass)) {
+                        result = 1;
+                    } else {
+                        result = 0; //아이디 존재
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
     public int insert(Member m) {
         int result = 0;
         String sql =
@@ -66,8 +95,5 @@ public class MemberDAO {
         }
 
         return result;
-    }
-
-    public int isId(String id, String pass) {
     }
 }

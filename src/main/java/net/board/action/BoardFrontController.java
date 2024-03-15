@@ -1,4 +1,4 @@
-package net.member.action;
+package net.board.action;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -8,11 +8,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import net.common.action.Action;
 import net.common.action.ActionForward;
+import net.member.action.*;
 
 import java.io.IOException;
 
-@WebServlet("*.net")
-public class MemberFrontController extends HttpServlet {
+@WebServlet("*.bo")
+public class BoardFrontController extends HttpServlet {
     protected void doProcess(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         System.out.println("요청 주소: " + request.getRequestURL());
@@ -34,23 +35,8 @@ public class MemberFrontController extends HttpServlet {
         Action action = null;
 
         switch (command) {
-            case "/login.net":
-                action = new MemberLoginAction();
-                break;
-            case "/join.net":
-                action = new MemberJoinAction();
-                break;
-            case "/idcheck.net":
-                action = new MemberIdCehckAction();
-                break;
-            case "/joinProcess.net":
-                action = new MemberJoinProcessAction();
-                break;
-            case "/loginProcess.net":
-                action = new MemberLoginProcessAction();
-                break;
-            case "/logout.net":
-                action = new MemberLogoutAction();
+            case "/BoardList.bo":
+                action = new BoardListAction();
                 break;
         } //switch (command)
 

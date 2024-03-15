@@ -10,6 +10,7 @@ import net.common.action.ActionForward;
 import net.member.db.MemberDAO;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class MemberLoginProcessAction implements Action {
     @Override
@@ -47,7 +48,13 @@ public class MemberLoginProcessAction implements Action {
             }
 
             response.setContentType("text/html;charset=utf-8");
+            PrintWriter out = response.getWriter();
+            out.print("<script>");
+            out.print("alert('" + message + "');");
+            out.print("location.href='login.net';");
+            out.print("</script>");
+            out.close();
+            return null;
         }
-        return null;
     }
 }
