@@ -103,7 +103,7 @@ public class BoardBean {
     }
 
     public String getBoard_date() {
-        return board_date;
+        return board_date.substring(0, 10);
     }
 
     public void setBoard_date(String board_date) {

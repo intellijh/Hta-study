@@ -6,7 +6,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <style>
-    boad > nav.navbar {
+    body > nav.navbar {
         justify-content: flex-end; /* 오른쪽 정렬 */
     }
 

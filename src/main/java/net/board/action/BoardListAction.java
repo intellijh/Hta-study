@@ -19,7 +19,7 @@ public class BoardListAction implements Action {
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         BoardDAO boarddao = new BoardDAO();
-        List<BoardBean> boardlist = new ArrayList<>();
+        List<BoardBean> boardlist;
 
         //로그인 성공시 파라미터 page가 없어요. 그래서 초기값이 필요합니다.
         int page = 1; //보여줄 page
