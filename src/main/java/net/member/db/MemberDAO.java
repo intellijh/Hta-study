@@ -128,6 +128,29 @@ public class MemberDAO {
     }
 
     public boolean updateMember(Member m) {
-        String sql = "";
+        boolean isUpdateSuccess = false;
+        String sql =
+                "UPDATE member\n" +
+                "SET name = ?, age = ?, gender = ?,email = ?, memberfile = ?\n" +
+                "WHERE id = ?";
+        try (Connection conn = ds.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, m.getName());
+            pstmt.setInt(2, m.getAge());
+            pstmt.setString(3, m.getGender());
+            pstmt.setString(4, m.getEmail());
+            pstmt.setString(5, m.getMemberfile());
+            pstmt.setString(6, m.getId());
+
+            int result = pstmt.executeUpdate();
+
+            if (result >= 1) {
+                isUpdateSuccess = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return isUpdateSuccess;
     }
 }

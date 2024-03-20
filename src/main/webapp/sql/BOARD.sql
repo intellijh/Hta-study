@@ -90,6 +90,8 @@ WHERE rnum >= 3
   AND rnum <= 6;
 
 ALTER TABLE board
+RENAME COLUMN board_contetn TO board_content;
+ALTER TABLE board
     MODIFY board_subject VARCHAR2(300);
 ALTER TABLE board
     MODIFY board_content VARCHAR2(4000);

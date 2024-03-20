@@ -12,6 +12,7 @@ import net.member.db.Member;
 import net.member.db.MemberDAO;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class MemberUpdateProcessAction implements Action {
     @Override
@@ -51,12 +52,24 @@ public class MemberUpdateProcessAction implements Action {
 
             boolean isUpdateSuccess = mdao.updateMember(m);
 
+            response.setContentType("text/html;charset=utf-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>");
+            if (isUpdateSuccess) {
+                out.println("   alert('회원정보를 수정했습니다.');");
+                out.println("   location.href='BoardList.bo';");
+            } else {
+                out.println("   alert('회원정보 수정에 실패했습니다.');");
+                out.println("   history.back();");
+            }
+            out.println("</script>");
+            out.close();
+            return null;
         } catch (IOException e) {
             e.printStackTrace();
             forward.setPath("error/error.jsp");
             request.setAttribute("message", "정보 수정 중 실패입니다.");
             forward.setRedirect(false);
-            return forward;
         }
         return forward;
     }

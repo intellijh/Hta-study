@@ -25,4 +25,5 @@ SELECT *
 FROM member;
 
 UPDATE member
-SET name = 'a', age = 1, email = 'a',
+SET name = 'a', age = 1, gender = 'a',email = 'a', memberfile = 'a'
+WHERE id = 'a';
