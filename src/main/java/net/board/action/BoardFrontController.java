@@ -8,7 +8,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import net.common.action.Action;
 import net.common.action.ActionForward;
-import net.member.action.*;
 
 import java.io.IOException;
 
@@ -48,13 +47,22 @@ public class BoardFrontController extends HttpServlet {
                 action = new BoardDetailAction();
                 break;
             case "/BoardModify.bo":
-                action = new BoardModify();
+                action = new BoardModifyAction();
                 break;
             case "/BoardModifyProcess.bo":
                 action = new BoardModifyProcessAction();
                 break;
             case "/BoardReply.bo":
                 action = new BoardReply();
+                break;
+            case "/BoardReplyProcess.bo":
+                action = new BoardReplyProcessAction();
+                break;
+            case "/BoardDelete.bo":
+                action = new BoardDeleteAction();
+                break;
+            case "/BoardFileDown.bo":
+                action = new BoardFileDownAction();
                 break;
         } //switch (command)
 

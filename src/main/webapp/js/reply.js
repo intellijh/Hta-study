@@ -1,12 +1,6 @@
 $(function () {
-    $("#upfile").change(function () {
-        console.log($(this).val())	//c:\fakepath\upload.png
-        const inputfile = $(this).val().split('\\');
-        $('#filevalue').text(inputfile[inputfile.length - 1]);// 3 - 1해서 2다.
-    });
-
     // submit 버튼 클릭할 때 이벤트 부분
-    $("form[name=boardform]").submit(function () {
+    $("form[name=replyform]").submit(function () {
         const $board_subject = $("#board_subject");
         if ($.trim($board_subject.val()) == "") {
             alert("제목을 입력하세요");
@@ -27,5 +21,5 @@ $(function () {
             $board_pass.focus();
             return false;
         }
-    }); // submit end
-}); // ready() end
+    });
+});

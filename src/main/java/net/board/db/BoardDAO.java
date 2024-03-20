@@ -59,7 +59,7 @@ public class BoardDAO {
                         "                         FROM comm\n" +
                         "                         GROUP BY COMMENT_BOARD_NUM)\n" +
                         "            WHERE board_num = comment_board_num(+)\n" +
-                        "            ORDER BY board_re_ref DESC , board_re_ref) j\n" +
+                        "            ORDER BY board_re_ref DESC , board_re_seq) j\n" +
                         "      WHERE ROWNUM <= ?\n" +
                         "      )\n" +
                         "WHERE rnum >= ? AND rnum <= ?";
@@ -219,5 +219,165 @@ public class BoardDAO {
         }
 
         return false;
+    }
+
+    public int boardReply(BoardBean boarddata) {
+        int num = 0;
+
+        try (Connection conn = ds.getConnection()) {
+            //트랜잭션을 이용하기 위해서 setAutoCommit을 false로 설정합니다.
+            conn.setAutoCommit(false);
+
+            try {
+                reply_update(conn, boarddata.getBoard_re_ref(), boarddata.getBoard_re_seq());
+
+                num = reply_insert(conn, boarddata);
+                conn.commit();
+            } catch (SQLException e) {
+                e.printStackTrace();
+
+                if (conn != null) {
+                    try {
+                        conn.rollback();
+                    } catch (SQLException exception) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            conn.setAutoCommit(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("boardReply() 에러 : " + e);
+        }
+        return num;
+    }
+
+    private void reply_update(Connection conn, int re_ref, int re_seq) throws SQLException {
+        //board_re_ref, board_re_seq 값을 확인하여 원문 글에 답글이 달려있다면
+        //달린 답글들의 board_se_seq 값을 1씩 증가시킵니다.
+        //현재 글을 이미 달린 답글보다 앞에 출력되게 하기 위해서 입니다.
+
+        String sql = "UPDATE board\n" +
+                "SET board_re_seq = board_re_seq + 1\n" +
+                "WHERE board_re_ref = ?\n" +
+                "AND board_re_seq > ?";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, re_ref);
+            pstmt.setInt(2, re_seq);
+            pstmt.executeUpdate();
+        }
+    }
+
+    private int reply_insert(Connection conn, BoardBean boarddata) throws SQLException {
+        int num = 0;
+
+        String board_max_sql = "(SELECT MAX(board_num) + 1 FROM board)";
+        try (PreparedStatement pstmt = conn.prepareStatement(board_max_sql)) {
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    num = rs.getInt(1);
+                }
+            }
+        }
+
+        String sql = "INSERT INTO board\n" +
+                "(board_num, board_name, board_pass, board_subject,\n" +
+                "board_content, board_file, board_re_ref, board_re_lev,\n" +
+                "board_re_seq, board_readcount)\n" +
+                "VALUES(?, ?, ?, ?,\n" +
+                "?, ?, ?, ?,\n" +
+                "?, ?)";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, num);
+            pstmt.setString(2, boarddata.getBoard_name());
+            pstmt.setString(3, boarddata.getBoard_pass());
+            pstmt.setString(4, boarddata.getBoard_subject());
+            pstmt.setString(5, boarddata.getBoard_content());
+            pstmt.setString(6, "");
+            pstmt.setInt(7, boarddata.getBoard_re_ref());
+            pstmt.setInt(8, boarddata.getBoard_re_lev() + 1);
+            pstmt.setInt(9, boarddata.getBoard_re_seq() + 1);
+            pstmt.setInt(10, 0);
+            pstmt.executeUpdate();
+        }
+
+        return num;
+    }
+
+    public boolean boardDelete(int num) {
+        String select_sql =
+                "SELECT board_re_ref, board_re_lev, board_re_seq\n" +
+                "FROM board\n" +
+                "WHERE board_num = ?";
+
+        String board_delete_sql =
+                "DELETE\n" +
+                "FROM board\n" +
+                "WHERE board_re_ref = ?\n" +
+                "  AND board_re_lev >= ?\n" +
+                "  AND board_re_seq >= ?\n" +
+                "  AND board_re_seq <= (\n" +
+                "    NVL((SELECT MIN(board_re_seq) - 1\n" +
+                "         FROM board\n" +
+                "         WHERE board_re_ref = ?\n" +
+                "           AND board_re_lev = ?\n" +
+                "           AND board_re_seq > ?),\n" +
+                "        (SELECT MAX(board_re_seq)\n" +
+                "         FROM board\n" +
+                "         WHERE board_re_ref = ?))\n" +
+                "    )";
+
+        boolean result_check = false;
+        try (Connection conn = ds.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(select_sql)) {
+
+            pstmt.setInt(1, num);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    try (PreparedStatement pstmt2 = conn.prepareStatement(board_delete_sql)) {
+                        pstmt2.setInt(1, rs.getInt("board_re_ref"));
+                        pstmt2.setInt(2, rs.getInt("board_re_lev"));
+                        pstmt2.setInt(3, rs.getInt("board_re_seq"));
+                        pstmt2.setInt(4, rs.getInt("board_re_ref"));
+                        pstmt2.setInt(5, rs.getInt("board_re_lev"));
+                        pstmt2.setInt(6, rs.getInt("board_re_seq"));
+                        pstmt2.setInt(7, rs.getInt("board_re_ref"));
+                        System.out.println(num);
+                        System.out.println(rs.getInt("board_re_ref"));
+                        System.out.println(rs.getInt("board_re_lev"));
+                        System.out.println(rs.getInt("board_re_seq"));
+                        int count = pstmt2.executeUpdate();
+                        System.out.println(count);
+                        if (count >= 1) {
+                            result_check = true; //삭제가 안된 경우에는 false를 반환합니다.
+                        }
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            System.out.println("boardDelete() 에러 : " + e);
+            e.printStackTrace();
+        }
+        return result_check;
+    }
+
+    public void setReadCountUpdate(int num) {
+        String sql =
+                "UPDATE board\n" +
+                "SET board_readcount = board_readcount + 1\n" +
+                "WHERE board_num = ?";
+
+        try (Connection conn = ds.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, num);
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("조회수 증가 오류");
+        }
     }
 }

@@ -10,7 +10,7 @@ import net.common.action.ActionForward;
 
 import java.io.IOException;
 
-public class BoardModify implements Action {
+public class BoardModifyAction implements Action {
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ActionForward forward = new ActionForward();
