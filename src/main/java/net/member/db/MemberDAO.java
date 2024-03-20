@@ -126,4 +126,8 @@ public class MemberDAO {
         }
         return m;
     }
+
+    public boolean updateMember(Member m) {
+        String sql = "";
+    }
 }

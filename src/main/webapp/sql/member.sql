@@ -23,3 +23,6 @@ VALUES ('admin', '1234', '관리자', 0,
 
 SELECT *
 FROM member;
+
+UPDATE member
+SET name = 'a', age = 1, email = 'a',

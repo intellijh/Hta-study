@@ -5,6 +5,9 @@ public class Member {
     private String password;
     private String name;
     private int age;
+    private String gender;
+    private String email;
+    private String memberfile;
 
     public String getId() {
         return id;
@@ -61,10 +64,4 @@ public class Member {
     public void setMemberfile(String memberfile) {
         this.memberfile = memberfile;
     }
-
-    private String gender;
-    private String email;
-    private String memberfile;
-
-
 }
