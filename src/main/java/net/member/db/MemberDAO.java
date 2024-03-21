@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MemberDAO {
     private DataSource ds;
@@ -152,5 +154,136 @@ public class MemberDAO {
             e.printStackTrace();
         }
         return isUpdateSuccess;
+    }
+
+    public int getListCount() {
+        String sql =
+                "SELECT COUNT(id)\n" +
+                "FROM member\n" +
+                "WHERE id <> 'admin'";
+        int count = 0;
+        try (Connection conn = ds.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    count = rs.getInt(1);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("getListCount() 에러 : " + e);
+        }
+        return count;
+    }
+
+    public int getListCount(String search_field, String search_word) {
+        String sql =
+                "SELECT COUNT(id)\n" +
+                "FROM member\n" +
+                "WHERE id <> 'admin'\n" +
+                "AND " + search_field + " LIKE ?";
+        int count = 0;
+        try (Connection conn = ds.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, "%" + search_word + "%");
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    count = rs.getInt(1);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("getListCount() 에러 : " + e);
+        }
+        return count;
+    }
+
+    public List<Member> getList(int page, int limit) {
+        String sql =
+                "SELECT *\n" +
+                "FROM (SELECT b.*, ROWNUM AS rnum\n" +
+                "      FROM (SELECT *\n" +
+                "            FROM member\n" +
+                "            WHERE id <> 'admin'\n" +
+                "            ORDER BY id) b\n" +
+                "      WHERE ROWNUM <= ?)\n" +
+                "WHERE rnum >= ?\n" +
+                "  AND rnum <= ?";
+        List<Member> list = new ArrayList<>();
+
+        try (Connection conn = ds.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            int startrow = (page -1) * limit + 1;
+            int endrow = startrow + limit - 1;
+            pstmt.setInt(1, endrow);
+            pstmt.setInt(2, startrow);
+            pstmt.setInt(3, endrow);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    Member m = new Member();
+                    m.setId(rs.getString("id"));
+                    m.setName(rs.getString("name"));
+                    m.setAge(rs.getInt("age"));
+                    m.setGender(rs.getString("gender"));
+                    m.setEmail(rs.getString("email"));
+                    list.add(m);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<Member> getList(String search_field, String search_word, int page, int limit) {
+        String sql =
+                "SELECT *\n" +
+                        "FROM (SELECT b.*, ROWNUM AS rnum\n" +
+                        "      FROM (SELECT *\n" +
+                        "            FROM member\n" +
+                        "            WHERE id <> 'admin'\n" +
+                        "            AND " + search_field + " LIKE ?\n" +
+                        "            ORDER BY id) b\n" +
+                        "      WHERE ROWNUM <= ?)\n" +
+                        "WHERE rnum >= ?\n" +
+                        "  AND rnum <= ?";
+        List<Member> list = new ArrayList<>();
+
+        try (Connection conn = ds.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, "%" + search_word + "%");
+
+            int startrow = (page -1) * limit + 1;
+            int endrow = startrow + limit - 1;
+            pstmt.setInt(2, endrow);
+            pstmt.setInt(3, startrow);
+            pstmt.setInt(4, endrow);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    Member m = new Member();
+                    m.setId(rs.getString("id"));
+                    m.setName(rs.getString("name"));
+                    m.setAge(rs.getInt("age"));
+                    m.setGender(rs.getString("gender"));
+                    m.setEmail(rs.getString("email"));
+                    list.add(m);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 }

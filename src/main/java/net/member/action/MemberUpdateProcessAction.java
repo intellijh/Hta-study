@@ -68,9 +68,9 @@ public class MemberUpdateProcessAction implements Action {
         } catch (IOException e) {
             e.printStackTrace();
             forward.setPath("error/error.jsp");
-            request.setAttribute("message", "정보 수정 중 실패입니다.");
+            request.setAttribute("message", "프로필 사진 업로드 실패입니다.");
             forward.setRedirect(false);
+            return forward;
         }
-        return forward;
     }
 }

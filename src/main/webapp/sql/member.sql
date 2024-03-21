@@ -27,3 +27,24 @@ FROM member;
 UPDATE member
 SET name = 'a', age = 1, gender = 'a',email = 'a', memberfile = 'a'
 WHERE id = 'a';
+
+SELECT COUNT(id)
+FROM member
+WHERE id <> 'admin';
+
+SELECT *
+FROM (SELECT b.*, ROWNUM AS rnum
+      FROM (SELECT *
+            FROM member
+            WHERE id <> 'admin'
+            ORDER BY id) b
+      WHERE ROWNUM <= 2)
+WHERE rnum >= 1
+  AND rnum <= 2;
+
+SELECT COUNT(id)
+FROM member
+WHERE id <> 'admin'
+AND search_field LIKE '%search_word%';
+
+
