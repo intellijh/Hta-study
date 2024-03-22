@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import net.comment.action.*;
 import net.common.action.Action;
 import net.common.action.ActionForward;
 
@@ -63,6 +64,21 @@ public class BoardFrontController extends HttpServlet {
                 break;
             case "/BoardFileDown.bo":
                 action = new BoardFileDownAction();
+                break;
+            case "/CommentAdd.bo":
+                action = new CommentAddAction();
+                break;
+            case "/CommentList.bo":
+                action = new CommentListAction();
+                break;
+            case "/CommentDelete.bo":
+                action = new CommentDeleteAction();
+                break;
+            case "/CommentUpdate.bo":
+                action = new CommentUpdateAction();
+                break;
+            case "/CommentReply.bo":
+                action = new CommentReplyAction();
                 break;
         } //switch (command)
 

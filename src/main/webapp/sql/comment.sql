@@ -20,3 +20,12 @@ CREATE SEQUENCE com_seq;
 DELETE comm;
 
 SELECT * FROM comm;
+
+-- 1. member에 있는 memberfile이 필요합니다.
+-- 2. order by comment_re_ref asc, comment_re_seq asc   (등록순)
+-- 3. order by comment_re_ref desc, comment_re_seq asc  (최신순)
+SELECT c.*, memberfile
+FROM comm c, member m
+WHERE c.id = m.id
+AND comment_board_num = 11
+ORDER BY comment_re_ref, comment_re_seq;

@@ -286,4 +286,21 @@ public class MemberDAO {
         }
         return list;
     }
+
+    public int delete(String id) {
+        int result = 0;
+        String sql =
+                "DELETE member\n" +
+                "WHERE id = ?";
+        try (Connection conn = ds.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, id);
+            result = pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("멤버 삭제 중 예외 발생 : " + e);
+        }
+        return result;
+    }
 }
