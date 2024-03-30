@@ -9,6 +9,7 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class CommentDAO {
     private DataSource ds;
@@ -106,5 +107,105 @@ public class CommentDAO {
             System.out.println("getCommentList() 에러 : " + e);
         }
         return array;
+    }
+
+    public int commentUpdate(Comment c) {
+
+        int result = 0;
+        String sql =
+                "UPDATE comm\n" +
+                "SET content = ?\n" +
+                "WHERE num = ?";
+
+        try (Connection conn = ds.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, c.getContent());
+            pstmt.setInt(2, c.getNum());
+            result = pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("commentUpdate 에러 : " + e);
+        }
+        return result;
+    }
+
+    public int commentReply(Comment c) {
+
+        int result = 0;
+
+        try (Connection conn = ds.getConnection()) {
+            conn.setAutoCommit(false);
+
+            try {
+                reply_update(conn, c.getComment_re_ref(), c.getComment_re_seq());
+                result = reply_insert(conn, c);
+                conn.commit();
+            } catch (Exception e) {
+                e.printStackTrace();
+                if (conn != null) {
+                    try {
+                        conn.rollback();
+                    } catch (SQLException exception) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
+    private void reply_update(Connection conn, int re_ref, int re_seq) throws SQLException {
+
+        String sql =
+                "UPDATE comm\n" +
+                "SET comment_re_seq = comment_re_seq + 1\n" +
+                "WHERE comment_re_ref = ?\n" +
+                "AND comment_re_seq > ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, re_ref);
+            pstmt.setInt(2, re_seq);
+            pstmt.executeUpdate();
+        }
+    }
+
+    private int reply_insert(Connection conn, Comment c) throws SQLException{
+        int result = 0;
+
+        String sql =
+                "INSERT INTO comm\n" +
+                "VALUES(com_seq.nextval, ?, ?, SYSDATE, ?, ? ,? ,?)";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, c.getId());
+            pstmt.setString(2, c.getContent());
+            pstmt.setInt(3, c.getComment_board_num());
+            pstmt.setInt(4, c.getComment_re_lev() + 1);
+            pstmt.setInt(5, c.getComment_re_seq() + 1);
+            pstmt.setInt(6, c.getComment_re_ref());
+            result = pstmt.executeUpdate();
+        }
+        return result;
+    }
+
+    public int commentDelete(int num) {
+
+        int result = 0;
+        String sql =
+                "DELETE comm\n" +
+                "WHERE num = ?";
+        try (Connection conn = ds.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, num);
+            result = pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("commentDelete() 에러 : " + e);
+        }
+        return result;
     }
 }

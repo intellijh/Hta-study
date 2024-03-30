@@ -16,8 +16,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BoardListAction implements Action {
+
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         BoardDAO boarddao = new BoardDAO();
         List<BoardBean> boardlist;
 

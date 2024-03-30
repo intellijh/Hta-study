@@ -15,8 +15,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class MemberUpdateProcessAction implements Action {
+
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         MemberDAO mdao = new MemberDAO();
         Member m = new Member();
         ActionForward forward = new ActionForward();
@@ -25,8 +27,9 @@ public class MemberUpdateProcessAction implements Action {
 
         int filesize = 5 * 1024 * 1024;
 
-        ServletContext sc = request.getServletContext();
-        String realFolder = sc.getRealPath(saveFolder);
+//        ServletContext sc = request.getServletContext();
+//        String realFolder = sc.getRealPath(saveFolder);
+        String realFolder = "\\\\C:\\test\\memberupload";
         System.out.println("realFolder = " + realFolder);
 
         try {
