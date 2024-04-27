@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.naver.myhome.mybatis.mapper.MemberMapper">
+
+    <!--
+        1. 태그에 id 속성은 Mapper 인터페이스에 사용된 메서드명과 동일 하게 작성됩니다.
+        2. resultType 속성은 Mapper 인터페이스에 사용된 메서드의 반환 타입을 작성해줍니다.
+    -->
+    <select id="isId" resultType="member">
+        SELECT *
+        FROM member
+        WHERE id = #{id}
+    </select>
+
+    <insert id="insert">
+        INSERT INTO member
+        VALUES (#{id}, #{password}, #{name}, #{age}, #{gender}, #{email}, #{auth})
+    </insert>
+
+    <update id="update">
+        UPDATE member
+        SET name = #{name}, age = #{age}, gender = #{gender}, email = #{email}
+        WHERE id  = #{id}
+    </update>
+
+    <select id="getSearchListCount" resultType="int">
+        SELECT COUNT(*)
+        FROM member
+        WHERE id != 'admin'
+        <if test="search_field != null">
+            AND
+            <choose>
+                <when test="search_field == 'id'">id</when>
+                <when test="search_field == 'name'">name</when>
+                <when test="search_field == 'age'">age</when>
+                <when test="search_field == 'gender'">gender</when>
+            </choose>
+            LIKE #{search_word}
+        </if>
+    </select>
+
+    <select id="getSearchList" resultType="member">
+        SELECT *
+        FROM (SELECT b.*, ROWNUM rnum
+              FROM (SELECT *
+                    FROM member
+                    WHERE id != 'admin'
+                    <if test="search_field != null">
+                        AND
+                        <choose>
+                            <when test="search_field == 'id'">id</when>
+                            <when test="search_field == 'name'">name</when>
+                            <when test="search_field == 'age'">age</when>
+                            <when test="search_field == 'gender'">gender</when>
+                        </choose>
+                        LIKE #{search_word}
+                    </if>
+                    ORDER BY id) b
+              WHERE ROWNUM &lt;= #{end}
+              )
+        WHERE rnum BETWEEN #{start} AND #{end}
+    </select>
+
+    <delete id="delete">
+        DELETE member
+        WHERE id = #{id}
+    </delete>
+</mapper>
