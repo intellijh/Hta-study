@@ -34,7 +34,7 @@
 <body>
 <!-- 게시판 수정 -->
 <div class="container">
-    <form name="modifyform" action="modifyAction" method="post" enctype="multipart/form-data">
+    <form name="modifyform" th:action="modifyAction" method="post" enctype="multipart/form-data">
         <input type="hidden" name="board_num" th:value="${boarddata.board_num}">
         <input type="hidden" name="board_file" th:value="${boarddata.board_file}">
         <h1>MVC 게시판 - 수정</h1>
@@ -71,8 +71,6 @@
             <button type=submit class="btn btn-primary">수정</button>
             <button type=reset class="btn btn-danger" onclick="history.go(-1)">취소</button>
         </div>
-
-        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
     </form>
 </div>
 </body>

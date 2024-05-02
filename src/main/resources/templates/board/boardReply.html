@@ -28,7 +28,7 @@
 </head>
 <body>
 <div class="container">
-    <form name="boardform" action="replyAction" method="post">
+    <form name="boardform" th:action="replyAction" method="post">
         <input type="hidden" name="board_re_ref" th:value="${boarddata.board_re_ref}">
         <input type="hidden" name="board_re_lev" th:value="${boarddata.board_re_lev}">
         <input type="hidden" name="board_re_seq" th:value="${boarddata.board_re_seq}">
@@ -62,8 +62,6 @@
             <input type="button" class="btn btn-danger" value="취소"
                    onclick="history.go(-1)">
         </div>
-
-        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
     </form>
 </div>
 

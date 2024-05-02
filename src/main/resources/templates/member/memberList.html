@@ -74,7 +74,7 @@
 </head>
 <body>
 <div class="container">
-    <form action="list" method="post">
+    <form th:action="list" method="post">
         <div class="input-group">
             <select id="viewcount" name="search_field">
                 <option value="0" selected>아이디</option>
@@ -95,7 +95,7 @@
             <thead>
             <tr>
                 <th colspan="2">MVC 게시판 - 회원 정보 list</th>
-                <th><span>[[회원 수 : ${listcount}]]</span></th>
+                <th><span>회원 수 : [[${listcount}]]</span></th> <!-- 대괄호 범위 테스트 -->
             </tr>
             <tr>
                 <td>아이디</td>
@@ -106,63 +106,41 @@
             <tbody>
             <tr th:each="m : ${memberlist}">
                 <td><a th:href="@{'info?id=' + ${m.id}}">[[${m.id}]]</a></td>
-                <td>${m.name}</td>
+                <td>[[${m.name}]]</td>
                 <td><a th:href="@{'delete?id=' + ${m.id}}">삭제</a></td>
             </tr>
             </tbody>
         </table>
-        <div>
+        <div class="center-block">
             <ul class="pagination justify-content-center">
                 <li th:if="${page <= 1}" class="page-item">
                     <a class="page-link gray">이전&nbsp;</a>
                 </li>
                 <li th:if="${page > 1}" class="page-item">
                     <a th:href="@{'list?page=' + ${page - 1} + '&search_field=' + ${search_field} + '&search_word=' + ${search_word}}"
-                       class="page-link">이전</a>&nbsp;
+                       class="page-link">이전&nbsp;</a>&nbsp;
                 </li>
 
-                <th:block th:each="a : ${#numbers.sequence(startpage, endpage)}">
-                    <li th:if="${a == page}" class="page-item active">
-                        <a class="page-link">${a}</a>
-                    </li>
-                    <c:if test="${a != page}">
-                        <c:url var="go" value="list">
-                            <c:param name="page" value="${a}"/>
-                            <c:param name="search_field" value="${search_field}"/>
-                            <c:param name="search_word" value="${search_word}"/>
-                        </c:url>
-                        <li class="page-item">
-                            <a href="${go}" class="page-link">${a}</a>
-                        </li>
-                    </c:if>
-                </th:block>
+                <li th:class="${a == page} ? 'page-item active' : 'page-item'"
+                    th:each="a : ${#numbers.sequence(startpage, endpage)}">
+                    <a th:href="${a == page} ? '' : 'list?page=' + ${a} + '&search_field' + ${search_field} + '&search_word=' + ${search_word}"
+                       class="page-link">[[${a}]]</a>
+                </li>
 
-                <c:if test="${page >= maxpage}">
-                    <li class="page-item">
-                        <a class="page-link gray">&nbsp;다음</a>
-                    </li>
-                </c:if>
-                <c:if test="${page < maxpage}">
-                    <c:url var="next" value="list">
-                        <c:param name="page" value="${page + 1}"/>
-                        <c:param name="search_field" value="${search_field}"/>
-                        <c:param name="search_word" value="${search_word}"/>
-                    </c:url>
-                    <li class="page-item">
-                        <a href="${next}" class="page-link gray">&nbsp;다음</a>
-                    </li>
-                </c:if>
+                <li class="page-item" th:if="${page >= maxpage}">
+                    <a class="page-link gray">&nbsp;다음</a>
+                </li>
+                <li class="page-item" th:if="${page < maxpage}">
+                    <a th:href="@{'list?page=' + ${page + 1} + '&search_field=' + ${search_field} + '&search_word=' + ${search_word}}"
+                       class="page-link gray">&nbsp;다음</a>
+                </li>
             </ul>
         </div>
     </th:block>
 </div>
 
 <!-- 회원이 없는 경우 -->
-<c:if test="${listcount == 0 && empty search_word}">
-    <h1>회원이 없습니다.</h1>
-</c:if>
-<c:if test="${listcount == 0 && !empty search_word}">
-    <h1>검색 결과가 없습니다.</h1>
-</c:if>
+<h1 th:if="${listcount == 0 && search_word == ''}">회원이 없습니다.</h1>
+<h1 th:if="${listcount == 0 && search_word != ''}">검색 결과가 없습니다.</h1>
 </body>
 </html>

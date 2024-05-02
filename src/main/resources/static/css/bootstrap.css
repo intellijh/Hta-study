@@ -5233,8 +5233,7 @@ a.badge-dark.focus, a.badge-dark:focus {
 	color: #040505
 }
 
-@
--webkit-keyframes progress-bar-stripes {
+@-webkit-keyframes progress-bar-stripes {
 	from {background-position: 1rem 0
 }
 
@@ -5243,8 +5242,8 @@ to {
 }
 
 }
-@
-keyframes progress-bar-stripes {
+
+@keyframes progress-bar-stripes {
 	from {background-position: 1rem 0
 }
 
@@ -6431,15 +6430,13 @@ a.close.disabled {
 	text-align: center
 }
 
-@
--webkit-keyframes spinner-border {
+@-webkit-keyframes spinner-border {
 	to {-webkit-transform: rotate(360deg);
 	transform: rotate(360deg)
 }
 
 }
-@
-keyframes spinner-border {
+@keyframes spinner-border {
 	to {-webkit-transform: rotate(360deg);
 	transform: rotate(360deg)
 }
@@ -6463,8 +6460,7 @@ keyframes spinner-border {
 	border-width: .2em
 }
 
-@
--webkit-keyframes spinner-grow { 0%{
+@-webkit-keyframes spinner-grow { 0%{
 	-webkit-transform: scale(0);
 	transform: scale(0)
 }
@@ -6475,8 +6471,7 @@ opacity
 1
 }
 }
-@
-keyframes spinner-grow { 0%{
+@keyframes spinner-grow { 0%{
 	-webkit-transform: scale(0);
 	transform: scale(0)
 }
@@ -7804,8 +7799,7 @@ a.bg-dark:focus, a.bg-dark:hover, button.bg-dark:focus, button.bg-dark:hover
 	z-index: 1030
 }
 
-@
-supports ((position:-webkit-sticky ) or (position:sticky )){ .
+@supports ((position:-webkit-sticky ) or (position:sticky )){ .
 	sticky-top {position: -webkit-sticky;
 	position: sticky;
 	top: 0;

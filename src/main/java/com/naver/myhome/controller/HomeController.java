@@ -9,4 +9,9 @@ public class HomeController {
     public String home() {
         return "redirect:/member/login";
     }
+
+    @GetMapping("/error/403")
+    public String error_403() {
+        return "error/403";
+    }
 }
