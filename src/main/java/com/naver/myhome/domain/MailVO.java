@@ -2,7 +2,7 @@ package com.naver.myhome.domain;
 
 public class MailVO {
 
-    private String from = "";
+    private String from = "sh2ck@naver.com";
     private String to;
     private String subject = "회원 가입을 축하드립니다. - 제목";
     private String content = "회원 가입을 축하드립니다. - 내용";

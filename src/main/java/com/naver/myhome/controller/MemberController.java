@@ -110,10 +110,10 @@ public class MemberController {
                 => rattr.addAttribute("result",1)"
         * */
         if (result == 1) {
-//            MailVO vo = new MailVO();
-//            vo.setTo(member.getEmail());
-//            vo.setContent(member.getId() + "님 회원가입을 축하드립니다.");
-//            sendMail.sendMail(vo);
+            MailVO vo = new MailVO();
+            vo.setTo(member.getEmail());
+            vo.setContent(member.getId() + "님 회원가입을 축하드립니다.");
+            sendMail.sendMail(vo);
 
             rattr.addFlashAttribute("result", "joinSuccess");
             return "redirect:/member/login";
