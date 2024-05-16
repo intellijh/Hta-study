@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.naver.myhome.mybatis.mapper.BoardMapper">
+
+    <!--
+        1. 태그에 id 속성은 Mapper 인터페이스에 사용된 메서드명과 동일 하게 작성됩니다.
+        2. resultType 속성은 Mapper 인터페이스에 사용된 메서드의 반환 타입을 작성해줍니다.
+    -->
+    <select id="getListCount" resultType="int">
+        SELECT COUNT(*)
+        FROM board
+    </select>
+
+    <!--
+        문법 오류
+        where rnum >= #{start}
+        ==> 해결법
+            1. where rnum &gt;= #{start}
+            2. where rnum <! [CDATA[ >= ]]> #{start}
+
+        ==> 설명
+            1. HTML 문서는 '<', '>' 와 같은 마크업 문자들을 파싱해서 읽어들이는 구조입니다.
+               그래서 마크업 문자들을 작다(<), 크다(>)로 사용하기 위해서
+               '&lt;', '&gt;' 등의 escape 문자열(escape character)을 이용해야 합니다.
+
+               < : &lt;
+               > : &gt;
+
+            2. CDATA(Character DATA) - XML 파서가 분석하지 않는 문자 데이터를 의미합니다.
+               사용하는 방법은 <! [CDATA[ 와 ]]> 사이에 문자들을 넣으면 됩니다.
+    -->
+<!--
+    <select id="getBoardList" resultType="board">
+        SELECT *
+        FROM (SELECT ROWNUM rnum, b.*
+              FROM (SELECT *
+                    FROM board
+                    ORDER BY board_re_ref DESC, board_re_seq) b
+              WHERE ROWNUM &lt;= #{end})
+        WHERE rnum &gt;= #{start}
+          AND rnum &lt;= #{end}
+    </select>
+-->
+
+    <select id="getBoardList" resultType="board">
+        SELECT *
+        FROM (SELECT ROWNUM rnum, b.*
+              FROM (SELECT board.*, NVL(cnt, 0) cnt
+                    FROM board, (SELECT board_num, COUNT(num) AS cnt
+                                 FROM comments
+                                 GROUP BY board_num) a
+                    WHERE board.board_num = a.board_num(+)
+                    ORDER BY board_re_ref DESC, board_re_seq) b
+              WHERE ROWNUM &lt;= #{end})
+        WHERE rnum &gt;= #{start}
+          AND rnum &lt;= #{end}
+    </select>
+
+    <!--
+        1. jdbcType=VARCHAR : 첨부 파일을 추가하지 않은 경우 에러 처리해줍니다.
+           해당 필드가 null 인 경우 jdbcType=VARCHAR 로 처리하면 nul1로 설정됩니다.
+            예) #{BOARD_FILE, jdbcType=VARCHAR}
+                #{BOARD_ORIGINAL, jdbcType=VARCHAR}
+
+        2. 1 insert 전에(order="BEFORE")
+           조회(select nvl(max(BOARD_NUM),0)+1 from board)합니다.
+           2 조회한 값을 keyProperty="BOARD_NUM"에서 설정한 대로
+           "BOARD_NUM" 프로퍼티에 저장합니다.
+           (public void setBoard_num(int board_num) )
+           3 insert 문의 #{BOARD_NUM}는 지금 구한 값을 BoardBean 에서 가져옵니다.
+           (public String getBOARD_NUM() { return BOARD_NUM; })
+    -->
+    <insert id="insertBoard">
+        <selectKey resultType="int" order="BEFORE" keyProperty="board_num">
+            SELECT NVL(MAX(board_num), 0) + 1
+            FROM board
+        </selectKey>
+        INSERT INTO board
+        VALUES (#{board_num}, #{board_name}, #{board_pass}, #{board_subject}, #{board_content}, #{board_file},
+        #{board_original}, #{board_num}, #{board_re_lev}, #{board_re_seq}, #{board_readcount}, SYSDATE)
+    </insert>
+
+    <update id="setReadCountUpdate">
+        UPDATE board
+        SET board_readcount = board_readcount + 1
+        WHERE board_num = #{number}
+    </update>
+
+    <select id="getDetail" resultType="board">
+        SELECT *
+        FROM board
+        WHERE board_num = #{number}
+    </select>
+
+    <select id="isBoardWriter" resultType="board">
+        SELECT *
+        FROM board
+        WHERE board_num = #{num}
+          AND board_pass = #{pass}
+    </select>
+
+    <update id="boardModify">
+        UPDATE board
+        SET board_subject  = #{board_subject},
+            board_content  = #{board_content},
+            board_file     = #{board_file},
+            board_original = #{board_original}
+        WHERE board_num = #{board_num}
+
+    </update>
+
+    <update id="boardReplyUpdate">
+        UPDATE board
+        SET board_re_seq = board_re_seq + 1
+        WHERE board_re_ref = #{board_re_ref}
+          AND board_re_seq &gt; #{board_re_seq}
+    </update>
+
+    <insert id="boardReply">
+        <selectKey resultType="int" order="BEFORE" keyProperty="board_num">
+            SELECT MAX(board_num) + 1
+            FROM board
+        </selectKey>
+        INSERT INTO board
+        VALUES (#{board_num}, #{board_name}, #{board_pass}, #{board_subject}, #{board_content}, #{board_file},
+        #{board_original}, #{board_re_ref}, #{board_re_lev}, #{board_re_seq}, #{board_readcount}, SYSDATE)
+    </insert>
+
+    <delete id="boardDelete">
+    <![CDATA[
+        DELETE board
+        WHERE board_re_ref = #{board_re_ref}
+          AND board_re_lev >= #{board_re_lev}
+          AND board_re_seq >= #{board_re_seq}
+          AND board_re_seq <= (NVL((SELECT MIN(board_re_seq) - 1
+                                    FROM board
+                                    WHERE board_re_ref = #{board_re_ref}
+                                      AND board_re_lev = #{board_re_lev}
+                                      AND board_re_seq > #{board_re_seq}),
+                                   (SELECT MAX(board_re_seq)
+                                    FROM board
+                                    WHERE board_re_ref = #{board_re_ref}))
+            )
+        ]]>
+    </delete>
+
+    <select id="getDeleteFileList" resultType="String">
+        SELECT board_file
+        FROM delete_file
+    </select>
+
+    <delete id="deleteFileList">
+        DELETE delete_file
+        WHERE board_file = #{file_name} -- 기본형이나 String 하나일 때 변수이름 달라도 가능
+    </delete>
+</mapper>
