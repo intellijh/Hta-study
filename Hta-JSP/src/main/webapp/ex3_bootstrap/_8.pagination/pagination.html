@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <style>
+    .bg-dark {
+      background: #117a8b!important;
+    }
+    .navbar-dark .navbar-nav .nav-link {
+      color: white;
+    }
+    .pagination {
+      margin-left: 30%;
+    }
+    button {
+      display: block;
+      margin-right: 5%;
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">Logo</a>
+
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="#">정보수정</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">로그아웃</a>
+    </li>
+
+    <!-- Dropdown -->
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        관리자
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">회원정보</a>
+        <a class="dropdown-item" href="#">게시판</a>
+        <a class="dropdown-item" href="#">기타</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+<br>
+<br>
+<div class="container">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>번호</th>
+      <th>이름</th>
+      <th>사는 곳</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>1</td>
+      <td>홍길동</td>
+      <td>울릉도</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>이순신</td>
+      <td>남해</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>세종대왕</td>
+      <td>궁궐</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<button type="button" class="btn btn-info float-right">글쓰기</button>
+<br>
+<br>
+<div class="container">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#">&lt;&lt;</a></li>
+    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">4</a></li>
+    <li class="page-item"><a class="page-link" href="#">5</a></li>
+    <li class="page-item"><a class="page-link" href="#">6</a></li>
+    <li class="page-item"><a class="page-link" href="#">7</a></li>
+    <li class="page-item"><a class="page-link" href="#">8</a></li>
+    <li class="page-item"><a class="page-link" href="#">9</a></li>
+    <li class="page-item"><a class="page-link" href="#">10</a></li>
+    <li class="page-item"><a class="page-link" href="#">&gt;&gt;</a></li>
+  </ul>
+</div>
+<script>
+  $(function () {
+    $("li").click(function () {
+      // $("li").removeClass("active");
+      $(".active").removeClass("active");
+      $(this).addClass("active");
+    });
+  });
+</script>
+</body>
+</html>
