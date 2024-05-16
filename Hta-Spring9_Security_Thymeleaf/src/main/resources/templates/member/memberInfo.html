@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <th:block th:replace="~{board/header :: headerFragment}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <style>
+        th, td {
+            text-align: center;
+        }
+
+        .container {
+            width: 50%;
+        }
+    </style>
+    <title>관리자 모드(회원 정보 보기)</title>
+</head>
+<body>
+<div class="container">
+    <table class="table table-bordered">
+        <tbody>
+        <tr>
+            <th scope="row">아이디</th>
+            <td>[[${memberinfo.id}]]</td>
+        </tr>
+        <tr>
+            <th scope="row">비밀번호</th>
+            <td>[[${#strings.substring(memberinfo.password, 0, 8)}]]</td>
+        </tr>
+        <tr>
+            <th scope="row">이름</th>
+            <td>[[${memberinfo.name}]]</td>
+        </tr>
+        <tr>
+            <th scope="row">나이</th>
+            <td>[[${memberinfo.age}]]</td>
+        </tr>
+        <tr>
+            <th scope="row">성별</th>
+            <td>[[${memberinfo.gender}]]</td>
+        </tr>
+        <tr>
+            <th scope="row">이메일 주소</th>
+            <td>[[${memberinfo.email}]]</td>
+        </tr>
+        <tr>
+            <td colspan="2"><a href="list" style="text-decoration: none">리스트로 돌아가기</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
