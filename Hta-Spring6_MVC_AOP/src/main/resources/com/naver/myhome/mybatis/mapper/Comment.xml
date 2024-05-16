@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.naver.myhome.mybatis.mapper.CommentMapper">
+
+    <!--
+        1. 태그에 id속성은 Mapper인터페이스에 사용된 메서드명과 동일 하게 작성됩니다.
+        2. resultType속성은 Mapper인터페이스에 사용된 메서드의 반환 타입을 작성해줍니다.
+    -->
+    <select id="getListCount" resultType="int">
+        SELECT COUNT(*)
+        FROM comments
+        WHERE board_num = #{board_num}
+    </select>
+
+    <insert id="commentInsert">
+        INSERT INTO comments
+        VALUES(com_seq.nextval, #{id}, #{content}, SYSDATE, #{board_num})
+    </insert>
+
+    <select id="getCommentList" resultType="comment">
+        SELECT *
+        FROM (SELECT ROWNUM rnum, num, id, content, reg_date, board_num
+              FROM (SELECT num, id, content, reg_date, board_num
+                    FROM comments
+                    WHERE board_NUM = #{board_num}
+                    ORDER BY reg_date DESC))
+        WHERE rnum BETWEEN #{start} AND #{end}
+    </select>
+
+    <update id="commentUpdate">
+        UPDATE comments
+        SET content = #{content}
+        WHERE num = #{num}
+    </update>
+
+    <delete id="commentDelete">
+        DELETE comments
+        WHERE num = #{num}
+    </delete>
+</mapper>
