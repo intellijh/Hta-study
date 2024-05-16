@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function () {
+            $("input:radio").change(function (event) {
+                alert($(this).val());
+            });
+        });
+    </script>
+</head>
+<body>
+<label>
+    <input type="radio" name="haha" value="1">사과
+</label>
+<label>
+    <input type="radio" name="haha" value="2">배
+</label>
+<label>
+    <input type="radio" name="haha" value="3">복숭아
+</label>
+</body>
+</html>

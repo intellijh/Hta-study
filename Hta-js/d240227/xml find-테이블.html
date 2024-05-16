@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>xml문서 find()로 찾기</title>
+    <style>
+        * {
+            text-align: center;
+        }
+        table {
+            margin: 0 auto;
+            width: 50%;
+            font-size: 20px;
+            border-collapse: collapse
+        }
+        tr {
+            height: 50px;
+            border-bottom: 1px solid gray;
+        }
+        tbody tr:hover {
+            background: orange;
+        }
+        caption {
+            color: green;
+            font-size: 30px;
+            font-weight: bold;
+        }
+    </style>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <!--
+        find() : 특정 태그를 선택합니다.
+        $.parseXML() : 문자열을 XML 문서 객체로 변경합니다.
+        text() : 태그 사이의 글자를 가져옵니다.
+    -->
+    <script>
+        $(function () {
+            let xml =
+                "<friends>\n" +
+                "    <friend>\n" +
+                "        <name>오바마</name>\n" +
+                "        <language>영어</language>\n" +
+                "    </friend>\n" +
+                "    <friend>\n" +
+                "        <name>하니</name>\n" +
+                "        <language>중국어</language>\n" +
+                "    </friend>\n" +
+                "    <friend>\n" +
+                "        <name>세종대왕</name>\n" +
+                "        <language>한국어</language>\n" +
+                "    </friend>\n" +
+                "</friends>";
+
+            const xmlDoc = $.parseXML(xml);
+            let output = " ";
+            output =
+                "<table>\n" +
+                "    <caption>친구들 명단</caption>\n" +
+                "    <thead>\n" +
+                "    <tr>\n" +
+                "        <th>번호</th>\n" +
+                "        <th>이름</th>\n" +
+                "        <th>언어</th>\n" +
+                "    </tr>\n" +
+                "    </thead>\n" +
+                "    <tbody>\n";
+            $(xmlDoc).find("friend").each(function (index) {
+                output +=
+                    "    <tr>\n" +
+                    `        <td>${index + 1}</td>\n` +
+                    `        <td>${$(this).find("name").text()}</td>\n` +
+                    `        <td>${$(this).find("language").text()}</td>\n` +
+                    "    </tr>\n";
+            });
+            output +=
+                "    </tbody>\n" +
+                "</table>";
+            $("body").html(output);
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>

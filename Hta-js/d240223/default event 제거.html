@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="../css/ex02062.css" type="text/css" rel="stylesheet">
+    <title>회원가입 폼</title>
+    <!--
+		디폴트 이벤트 : 이벤트가 발생했을 때 기본적으로 실행되는 동작을 말합니다.
+		예를 들어 a태그는 클릭하면 다른 페이지로 이동하는데 이것이 a태그가 가진 디폴트 이벤트 입니다.
+		또한 입력 양식의 submit 버튼을 누르면 자동으로 입력 양식을 서버로 데이터를 전송하는 것이 디폴트 이벤트입니다.
+
+		디폴트 이벤트 제거하는 방법
+	1. obj.onsubmit= function(){
+				....
+				return false;
+	}
+
+	2. function whenSubmit() {
+	   ...
+	   return false;
+	   }
+	   <form onsubmit="return whenSubmit()">
+
+	3. event.preventDefault()를 사용하는 경우
+	<a href="https://www.naver.com" onclick="event.preventDefault()">
+
+	4.
+	<form id="login" action="ex0201_domtree.html">
+
+	function whenSubmit(event) {
+			...
+			event.preventDefault();
+		}
+
+		document.querySelector("#login").addEventListener("submit",whenSubmit)
+	 -->
+</head>
+<body>
+<form id="my-form" action="eventhandling_id.html">
+    <fieldset>
+        <legend>회원가입 폼</legend>
+        <label for="name">이름</label>
+        <input type="text" name="name" id="name">
+        <br>
+        <label for="pass">비밀번호</label>
+        <input type="text" name="pass" id="pass">
+        <br>
+        <label for="pass-check">비밀번호 확인</label>
+        <input type="text" name="pass-check" id="pass-check">
+        <br>
+        <input type="submit" value="제출">
+    </fieldset>
+</form>
+<script>
+    document.getElementById("my-form").onsubmit = function () {
+        return false;
+    };
+</script>
+</body>
+</html>

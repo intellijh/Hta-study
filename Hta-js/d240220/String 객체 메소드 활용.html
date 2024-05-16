@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>String 객체의 메소드 활용</title>
+</head>
+<body>
+<h3>String 객체의 메소드 활용</h3>
+<hr>
+<script>
+    var jumin = prompt("주민번호를 입력하세요", "810908-3234567");
+    var gender = jumin.substring(7, 8);
+
+    if (gender == 1 || gender == 3) {
+        document.body.style.background = "mediumslateblue";
+        document.body.innerHTML += "남자";
+    } else if (gender == 2 || gender == 4) {
+        document.body.style.background = "pink";
+        document.body.innerHTML += "여자";
+    } else {
+        alert("잘못된 값");
+    }
+</script>
+</body>
+</html>

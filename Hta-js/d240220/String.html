@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>String</title>
+</head>
+<body>
+<h3>String 객체의 메소드 활용</h3>
+<hr>
+<script>
+    var a = new String("Boys and Girls");
+    var b = "!!";
+    document.write("a : " + a + "<br>");
+    document.write("b : " + b + "<br><hr>");
+
+    document.write("a.charAt(0) = " + a.charAt(0) + "<hr>");
+
+    document.write('a.concat(b, "입니다") = ' + a.concat(b, "입니다") + "<br>");
+    document.write("a : " + a + "<br>");
+    document.write('문자열 길이 = ' + a.length + "<hr>");
+
+    document.write('a.indexOf("s") = ' + a.indexOf("s") + "<br>");
+    document.write('a.lastIndexOf("s") = ' + a.lastIndexOf("s") + "<br>");
+    document.write('a.indexOf("And") = ' + a.indexOf("And") + "<br>");
+    document.write('a.indexOf("and") = ' + a.indexOf("and") + "<br>");
+
+    document.write('a.substring(5) = ' + a.substring(5) + "<br>");
+    document.write('a.substring(5, 8) = ' + a.substring(5, 8) + "<br>");
+
+    document.write('a.substr(5, 3) = ' + a.substr(5, 3) + "<hr>");
+    document.write('a.toUpperCase() = ' + a.toUpperCase() + "<br>");
+    document.write('a.toLowerCase() = ' + a.toLowerCase() + "<hr>");
+
+    document.write('a.replace("and", "or") = ' + a.replace("and", "or") + "<br>");
+    document.write(a + "<hr>");
+
+    document.write("    Javascript   ".trim() + "<hr>");
+
+    var sub = a.split(" ");
+    document.write('sub[0] = ' + sub[0] + "<br>");
+    document.write('sub[1] = ' + sub[1] + "<br>");
+    document.write('sub[2] = ' + sub[2] + "<hr>");
+</script>
+</body>
+</html>

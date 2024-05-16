@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>문서 객체 만들기</title>
+    <script>
+        window.onclick = function () {
+            var output = "";
+            output += "<div>";
+            output += " <img src='../image/koala.jpeg'>";
+            output += "</div>";
+
+            document.body.innerHTML += output;
+            document.body.innerHTML += '<style>img {width: 500px}</style>'
+            window.onclick = null;
+        };
+    </script>
+</head>
+<body>
+<h1>클릭하면 펭귄이 나타나게 해주세요</h1>
+</body>
+</html>

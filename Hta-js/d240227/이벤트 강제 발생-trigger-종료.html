@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function () {
+            $("h1").click(function () {
+                $(this).html(function (index, html) {
+                    return html + "*";
+                });
+            });
+
+            const timer = setInterval(function () {
+                $("h1:last").trigger("click");
+            }, 1000);
+
+            $("#end").click(function () {
+                alert("트리거 종료");
+                clearInterval(timer);
+            });
+        });
+    </script>
+</head>
+<body>
+<h1>Start: </h1>
+<h1>Start: </h1>
+<input type="button" value="트리거 종료" id="end"/>
+</body>
+</html>

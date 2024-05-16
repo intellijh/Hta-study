@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * {
+            margin: 5px;
+            padding: 5px;
+            border: 3px solid black;
+        }
+    </style>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function () {
+            $("a").click(function (event) {
+                $(this).css("background-color", "blue");
+                event.preventDefault(); // a태그 기본 이벤트 제거
+                event.stopPropagation(); // a태그 선택 시 div태그로의 이벤트 전달을 제거
+            });
+
+            $("div").click(function (event) {
+                $(this).css("background-color", "orange");
+            });
+        });
+    </script>
+</head>
+<body>
+<div>
+    <a href="../d240227/이벤트 강제 발생-trigger-시작종료-개선.html">트리거 예제</a> div 태그
+</div>
+</body>
+</html>

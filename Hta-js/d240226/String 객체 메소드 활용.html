@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>String 객체의 메소드 활용</title>
+    <style>
+        @keyframes genderMove {
+            0% {
+                color: purple;
+            }
+            25% {
+                color: red;
+            }
+            50% {
+                color: orange;
+            }
+            75% {
+                color: yellow;
+            }
+            100% {
+                color: green;
+            }
+        }
+
+        #gender {
+            font-size: 10em;
+            font-weight: bold;
+            animation: genderMove 4s infinite;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h3>String 객체의 메소드 활용</h3>
+<hr>
+<script>
+    /*
+        1. 정규 표현식은 문자열에 나타나는 특정 문자 조합과 대응시키기 위해 사용되는 패턴입니다.
+            자바스크립트에서 정규 표현식은 객체입니다
+        2. 표현 작성 방법
+            1) 정규 표현식 리터럴 사용법 - 슬래쉬 사이에 표현식을 넣는 방식
+                예) var reg = /^[0-9]{6}-[0-9]{7}$/;
+
+                1 슬래쉬(/)와 슬래쉬(/) 사이에 표현식을 넣는다.
+                2 ^ : 정규 표현식 문자열 시작
+                3 $ : 정규 표현식 문자열 끝
+                4 [ ]: 안에 있는 문자 중 하나를 선택하고 범위는 '-'로 지정
+                5 0-9: 0123456789를 의미하며 '\d'와 같은 의미
+                6 { } : 반복 수
+                    예) {3,4} - 3~4번 반복
+                        {4} - 4번 반복
+                        {1,} - 1개 이상 반복
+                        (A|B) : A 또는 B
+
+            2) new RegExp() 사용법
+                예) var reg = new RegExp("^[0-9]{6}-[0-9]{7}$");
+            3) test() 메소드 = 정규 표현식에 해당하는 문자열이 있으면 true 그렇지 않으면 false를 반환한다.
+    */
+    var reg = /^[0-9]{2}(0[1-9]|1[012])(0[1-9]|1[0-9]|2[0-9]|3[01])-[1234][0-9]{6}$/;
+
+    do {
+        var jumin = prompt("주민번호를 입력하세요", "810908-3234567");
+        var isValid = reg.test(jumin);
+
+        if (!isValid) {
+            alert("주민번호 형식을 확인하세요");
+        }
+    } while (!isValid);
+
+    var gender = jumin.substring(7, 8);
+    if (gender === "1" || gender === "3") {
+        document.body.style.background = "mediumslateblue";
+        document.body.innerHTML += "<div id='gender'>남자</div>";
+    } else if (gender === "2" || gender === "4") {
+        document.body.style.background = "pink";
+        document.body.innerHTML += "<div id='gender'>여자</div>";
+    }
+/*
+    var func = function () {
+        if (jumin.length !== 14) {
+            alert("주민번호의 길이는 14개 입니다.")
+            isValid = false;
+            return;
+        }
+
+        var frontJumin = jumin.substring(0, 6);
+
+        if (isNaN(frontJumin)) {
+            alert("앞자리 형식을 확인하세요");
+            isValid = false;
+            return;
+        }
+
+        var isBar = jumin.substring(6, 7);
+        if (isBar !== '-') {
+            alert("앞자리 입력 후 -을 입력하세요");
+            isValid = false;
+            return;
+        }
+
+        var backJumin = jumin.substring(7);
+        if (isNaN(backJumin)) {
+            alert("뒷자리 형식을 확인하세요");
+            isValid = false;
+            return;
+        }
+
+        var gender = jumin.substring(7, 8);
+        if (gender === 1 || gender === 3) {
+            document.body.style.background = "mediumslateblue";
+            document.body.innerHTML += "<div id='gender'>남자</div>";
+        } else if (gender === 2 || gender === 4) {
+            document.body.style.background = "pink";
+            document.body.innerHTML += "<div id='gender'>여자</div>";
+        } else {
+            alert("잘못된 주민번호 값입니다.");
+            isValid = false;
+        }
+    };
+
+    func();
+*/
+</script>
+</body>
+</html>

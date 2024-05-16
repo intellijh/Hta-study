@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>콤마 제거와 콤마 넣기</title>
+</head>
+<body>
+<h1>이곳의 값을 자바스크립트로 가져와 보세요</h1>
+<h1>25,000,000원</h1>
+<script>
+    var data = "25,000,000원";
+
+    var data1 = data.replace(",", "")
+    document.write(data + "=>" + data1 + "<hr>");
+
+    /*
+    * 정규 표현식은 문자열에 나타나는 특정 문자 조합과 대응시키기 위해 사용되는 패턴입니다
+    * 1. 만드는 방법
+    *   1) 형식
+    *       /pattern 형식 /[플래그]
+    *   2) 시작과 끝은 /를 사용
+    *   3) 플래그는 생략 가능
+    *
+    * 2. replace(/,\원/, "") 의미
+    *   1) data 문자열을 처음부터 한 글자씩 비교해서 "," 또는 "원"이면 ""로 처음 한번만 바꿉니다.
+    *   2) 플래그 g를 이용해서 문자열 처음부터 끝까지 적용하도록 합니다.
+    */
+    var data2 = data.replace(/,|원/, "");
+    document.write(data + "=>" + data2 + "<hr>");
+
+    var data3 = data.replace(/,|원/g, "");
+    document.write(data + "=>" + data3 + "<hr>");
+
+    var data4 = "25/000/".replace(/\//g, "");
+    document.write("25/000/" + "=>" + data4 + "<hr>");
+
+    var data5 = 25000000;
+    document.write(data5 + "=>" + data5.toLocaleString() + "<hr>");
+
+    data ="abAb"
+    var data6 = data.replace(/a/g, "*");
+    document.write(data + "=>" + data6 + "<hr>");
+
+    var data7 = data.replace(/a/gi, "*");
+    document.write(data + "=>" + data7 + "<hr>");
+
+    var data8 = document.getElementsByTagName("h1")[1];
+    data8.textContent = data8.textContent.replace(/,|원/g, "");
+    document.write(data8.textContent + "<hr>");
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>xml문서 find()로 찾기</title>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <!--
+        find() : 특정 태그를 선택합니다.
+        $.parseXML() : 문자열을 XML 문서 객체로 변경합니다.
+        text() : 태그 사이의 글자를 가져옵니다.
+    -->
+    <script>
+        $(function () {
+            let xml =
+                "<friends>\n" +
+                "    <friend>\n" +
+                "        <name>오바마</name>\n" +
+                "        <language>영어</language>\n" +
+                "    </friend>\n" +
+                "    <friend>\n" +
+                "        <name>하니</name>\n" +
+                "        <language>중국어</language>\n" +
+                "    </friend>\n" +
+                "    <friend>\n" +
+                "        <name>세종대왕</name>\n" +
+                "        <language>한국어</language>\n" +
+                "    </friend>\n" +
+                "</friends>";
+
+            const xmlDoc = $.parseXML(xml);
+            let output = "";
+            $(xmlDoc).find("friend").each(function (index) {
+                output += "<div>";
+                // output += " <h1>" + $(this).find("name").text() + "</h1>";
+                // output += " <p>" + $(this).find("language").text() + "</p>";
+                output += ` <h1>${$(this).find("name").text()}</h1>`;
+                output += ` <p>${$(this).find("language").text()}</p>`;
+                output += "</div>";
+            });
+            $("body").html(output);
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>

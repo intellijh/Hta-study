@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <!--
+        attr() 메소드
+        1. $(selector).attr(name);
+        2. $(selector).attr(name, value);
+        3. $(selector).attr(name, function(index, attr){});
+
+        jQuery 위치 필터 선택자
+        요소:eq(n) : 선택한 요소의 인덱스 번호에 해당하는 문서 객체를 선택합니다. (0, 1, 2, 3,....)
+    -->
+    <script>
+        $(function () {
+            $("img").attr("src", function (index, attrValue) {
+                let s = `index = ${index}, ${attrValue}`;
+                console.log(s);
+            });
+        });
+    </script>
+</head>
+<body>
+<img src="../image/sharp.png" alt="sharp.png"/>
+<img src="../image/music.png" alt="music.png"/>
+<img src="../image/call.png" alt="call.png"/>
+</body>
+</html>

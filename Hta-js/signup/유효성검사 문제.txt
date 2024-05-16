@@ -1,0 +1,87 @@
+﻿* 다음 조건에 맞는 폼을 완성하세요
+  <body> 
+   <form> 
+    <fieldset>
+     <legend>유효성 검사</legend>
+       
+           조건)
+              1. form 태그 속성
+                                  전송방식은 get, submit이 이루어지면 send.html로 이동                   
+                     name=myform  id=myform  ********="return check()"                     
+
+               2.  <label>ID</label> input 태그 속성    
+                   input  type=text size=10 name=id id=id
+
+               3. ID중복검사
+                   input  type=button value="ID중복검사" onClick="idcheck()"
+
+               4. <label>비밀번호</label>
+                   input type=password name=pass id=pass
+
+               5. <label>주민번호</label>
+                                  주민번호 앞자리
+                   input  type=text size=6 maxLength=6 name=jumin1 id=jumin1  onKeyup="move()"
+
+               6. 주민번호 뒷자리
+                    input type=text size=7 maxLength=7 name=jumin2 id=jumin2   onKeyup="move()"
+
+               7. <label>E-Mail</label>
+                    input type=text name=email id=email
+                    input type=text name=domain id=domain  
+                    <select name=sel id=sel onchange="domain1()" >
+                      <option value="">직접입력</option>
+                      <option value="naver.com">naver.com</option>
+                      <option value="daum.net">daum.net</option>
+                      <option value="nate.com">nate.com</option>
+                      <option value="gmail.com">gmail.com</option>
+                  </select>
+
+               8.  <label>성별</label>
+                  input type=radio name=gender value=m id=gender1   남자
+                  input type=radio name=gender value=f id=gender2   여자
+ 
+               9. <label>취미</label>
+                  input type=checkbox name=hobby id=hobby1 value="공부
+                  input type=checkbox name=hobby id=hobby2 value="게임"
+                  input type=checkbox name=hobby id=hobby3 value="운동"
+                  input type=checkbox name=hobby id=hobby4 value="등산"
+                  input type=checkbox name=hobby id=hobby5 value="낚시"
+
+               10. <label>우편번호</label>
+                   input type=text  maxLength=5 name=post1 id=post1                      
+                   input type=button value="우편검색" *******="post()
+
+              11. <label>주소</label>
+                   input type=text  name=address id=address
+
+               12. <label>자기소개</label>
+ 
+                   textarea rows=10 cols=75 name=intro id=intro
+
+      <button type=submit value="회원가입">
+      <button type=reset value="취소">
+     </fieldset>
+   </form>
+
+
+
+* 이벤트에 적용된 함수를 완성하세요
+   1. check() : 모든 항목의 공백을 체크하여 공백이 있는 경우 입력하라는 메시지 출력하고 
+                submit이 이루어지지 않도록 합니다.
+                취미는 반드시 2개이상 체크하였는지 확인합니다.
+
+   2. idcheck() : 
+                  1)  id값이 있는지 체크하고 입력하지 않으면 "ID를 입력하세요"라는 메시지 출력
+                  2)  id값을 입력하면 width=300, height=250"의 팝업창이 나타나도록 합니다.
+                  3)  보여주는 페이지는 "idcheck.html"이며 주소창에 id를 입력한 값이 표시되도록 합니다.                 
+                      예) file:///D:/workspace/JavaScript/src/ch02/idcheck.html?id=홍길동
+
+   3. move() : 주민번호 앞자리는 6자리 숫자이면 뒷자리로 포커스를 옮기고
+               주민번호 앞자리가 6자리 중 숫자가 아닌 경우 "숫자를 입력하세요"라는 메시지 출력과 앞자리에 포커스 위치하게 합니다.            
+               주민번호 뒷자리가 7자리 중 숫자가 아닌 경우 "숫자를 입력하세요"라는 메시지 출력과 뒷자리에 포커스 위치하게 합니다.
+  
+   4. domain1() : select태그를 선택하면 id=domain input태그에 선택된 값이 나타나게 합니다.
+
+   5. post() : "이곳은 우편번호 검색하는 곳입니다."라는 팝업창(width=400, height=500)이 나타납니다.
+                보여주는 페이지는 "post.html"입니다.
+      

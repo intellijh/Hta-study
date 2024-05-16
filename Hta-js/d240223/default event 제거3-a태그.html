@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="../css/ex02062.css" type="text/css" rel="stylesheet">
+    <title>a태그 디폴트 이벤트 제거하기</title>
+</head>
+<body>
+<h1>a태그 디폴트 이벤트 제거하기</h1>
+1. onclick="event.preventDefault()" : 현재 발생한 이벤트의 디폴트 행동을 취소합니다.
+<br>
+<a href="https://www.naver.com" onclick="event.preventDefault()">
+    네이버로 이동이 안됩니다.
+</a>
+<hr>
+2. onclick="return false" :  &lt;a&gt;를 클릭할 때의 디폴트 행동을 취소합니다.
+<br>
+<a href="https://www.naver.com" onclick="return false">
+    네이버로 이동이 안됩니다.
+</a>
+</body>
+</html>

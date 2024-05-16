@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <!--
+        jQuery로 이벤트를 연결하는 가장 기본적인 방법은 on()메서드를 사용하는 것입니다.
+        on()메서드의 두 가지 형태
+        1. $(selector).on(eventName, function(event){})
+        2. $(selector).on(object)
+    -->
+    <script>
+        $(function () {
+            const moyang = [ "★", "※", "♣️" ];
+
+            $("div").on("click", function () {
+                $(this).append(moyang[$(this).index()]);
+            });
+        });
+    </script>
+</head>
+<body>
+<div>월요일</div>
+<div>화요일</div>
+<div>수요일</div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>도서 테이블</title>
+    <style>
+        #books caption {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 0.5em;
+        }
+        /* table-layout 속성 : auto (각 열의 크기를 자동으로 계산 - 기본값) */
+        /* border-collapse: separate; (기본값) 셀의 테두리를 분리하여 그린다 */
+        /* border-collapse: collapse; 셀의 테두리를 합친다 */
+        #books {
+            border-collapse: collapse;
+            table-layout: auto;
+            width: 500px;
+            text-align: center;
+            margin:0 auto; /* 0은 상하 마진 */
+        }
+        td {
+            border-bottom: 1px solid gainsboro;
+            height: 2em;
+        }
+        th {
+            color: white;
+            background-color: gray;
+            height: 2em;
+        }
+        tr:hover {
+            background-color: gainsboro;
+        }
+    </style>
+</head>
+<body>
+<script>
+    var title1 = "대한민국 전국 맛집";
+    var title2 = "지적 대화를 위한 넓고 얕은 지식";
+    var title3 = "베스트셀러 절대로 읽지 마라";
+    var list = '<table id="books">\n' +
+        '    <caption>베스트 셀러</caption>\n' +
+        '    <thead>\n' +
+        '    <tr>\n' +
+        '        <th>순위</th>\n' +
+        '        <th>제목</th>\n' +
+        '    </tr>\n' +
+        '    </thead>\n' +
+        '    <tbody>\n' +
+        '    <tr>\n' +
+        '        <td>1</td>\n' +
+        '        <td>' + title1 + '</td>\n' +
+        '    </tr>\n' +
+        '    <tr>\n' +
+        '        <td>2</td>\n' +
+        '        <td>' + title2 + '</td>\n' +
+        '    </tr>\n' +
+        '    <tr>\n' +
+        '        <td>3</td>\n' +
+        '        <td>' + title3 + '</td>\n' +
+        '    </tr>\n' +
+        '    </tbody>\n' +
+        '</table>';
+    document.body.innerHTML = list;
+</script>
+</body>
+</html>

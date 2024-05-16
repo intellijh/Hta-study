@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * {
+            margin: auto;
+            text-align: center;
+            line-height: 2em;
+        }
+        #iconImg {
+            display: block;
+        }
+    </style>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function () {
+            $("#icon").change(function (event) {
+                $("#iconImg").prop("src", $(this).val());
+            });
+        });
+    </script>
+</head>
+<body>
+<h3>select 객체에서 선택한 그림 출력</h3>
+<hr>
+<div>select를 선택하면 해당 이미지가 보입니다.</div>
+<form>
+    <select id="icon">
+        <option value="../image/call.png">전화</option>
+        <option value="../image/music.png" selected>음악</option>
+        <option value="../image/sharp.png">샾</option>
+    </select>
+    <img id="iconImg" src="../image/music.png"/>
+</form>
+</body>
+</html>

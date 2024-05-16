@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>radio 객체 선택한 그림 출력</title>
+</head>
+<body>
+<h3>선택한 그림 출력</h3>
+<hr>
+<div>radio 버튼을 클릭하면 이미지가 바뀝니다.</div>
+<form>
+    <select id="icon">
+        <option value="../image/music.png">music</option>
+        <option value="../image/call.png" selected>call</option>
+        <option value="../image/sharp.png">sharp</option>
+    </select>
+    <img src="../image/call.png" id="iconImg"/>
+</form>
+<script>
+    var icon = document.querySelector("#icon");
+    icon.addEventListener("change", show);
+
+    function show() {
+        var img = document.querySelector("#iconImg");
+        img.src = this.value;
+    }
+</script>
+</body>
+</html>

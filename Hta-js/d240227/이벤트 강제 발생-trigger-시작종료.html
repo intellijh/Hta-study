@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        input {
+            border: none;
+            width: 100px;
+            height: 40px;
+            color: white;
+        }
+        #start {
+            background: green;
+        }
+        #end {
+            background: gray;
+        }
+    </style>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function () {
+            $("h1").click(function () {
+                $(this).html(function (index, html) {
+                    return html + "*";
+                });
+            });
+
+            const clickTrig = function () {
+                $("h1:last").trigger("click");
+            }
+
+            let timer = "";
+
+            $("#start").click(function () {
+                timer = setInterval(clickTrig, 1000);
+                $("#start").val("시작중...");
+                $("#start").css("background", "gray");
+                $("#end").css("background", "red");
+            });
+
+            $("#end").click(function () {
+                clearInterval(timer);
+                $("#start").val("트리거 시작");
+                $("#start").css("background", "green");
+                $("#end").css("background", "gray");
+            });
+        });
+    </script>
+</head>
+<body>
+<h1>Start:</h1>
+<h1>Start:</h1>
+<input type="button" value="트리거 시작" id="start">
+<input type="button" value="트리거 종료" id="end">
+</body>
+</html>

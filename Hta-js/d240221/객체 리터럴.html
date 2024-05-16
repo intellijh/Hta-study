@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>객체 리터럴</title>
+    <script>
+        var saram = {
+            "name": '나최고',
+            'age': 25,
+            ki: 170.2,
+            blood: 'A',
+            address: '서울시 강남구'
+        };
+
+        //출력 방법 1 : 객체.속성의 키
+        document.write(saram.name + "<br>");
+        document.write(saram.age + "<br>");
+        document.write(saram.ki + "<br>");
+        document.write(saram.blood + "<br>");
+        document.write(saram.address + "<hr>");
+
+        //출력 방법 2 : with(객체) {}
+        with(saram) {
+            document.write(name + "<br>");
+            document.write(age + "<br>");
+            document.write(ki + "<br>");
+            document.write(blood + "<br>");
+            document.write(address + "<hr>");
+        }
+
+        //출력 방법 3 : 객체["속성의 키"]
+        document.write(saram["name"] + "<br>");
+        document.write(saram["age"] + "<br>");
+        document.write(saram['ki'] + "<br>");
+        document.write(saram['blood'] + "<br>");
+        document.write(saram["address"] + "<hr>");
+
+        for (var p in saram) {
+            document.write(p + ":" + saram[p] + "<br>");
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

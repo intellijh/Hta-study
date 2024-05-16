@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body * {
+            display: block;
+            border: 2px solid lightgray;
+            color: lightgray;
+            padding: 5px;
+            margin: 15px;
+        }
+    </style>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function () {
+            $("h2").next().css({
+                "color": "red",
+                "border": "2px solid red"
+            });
+        });
+    </script>
+</head>
+<body class="siblings">
+<div>div (parent)
+    <p>p</p>
+    <span>span</span>
+    <h2>나</h2>
+    <h3>h3</h3>
+    <h4>h4</h4>
+    <h5>h5</h5>
+    <p>p</p>
+</div>
+</body>
+</html>

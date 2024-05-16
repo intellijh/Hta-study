@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>const와 let</title>
+</head>
+<body>
+<script>
+    //한 번 선언된 변수를 다시 선언할 수 있습니다.
+    var e = 1;
+    console.log(e);
+    var e = 2;
+    console.log(e);
+
+    const a = "나는 한 번 설정하면 값을 변경할 수 없어요";
+    console.log(a);
+
+    // Assignment to constant variable
+    // a = "나는 에러가 나요";
+
+    let b = "나는 값을 변경할 수 있어요";
+    console.log(b);
+    b = "변경되었나요? (let b)";
+    console.log(b);
+
+    // 오류 발생
+    // let b = "error";
+</script>
+</body>
+</html>

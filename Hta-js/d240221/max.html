@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>max</title>
+    <script>
+        function max() {
+            var max = arguments[0];
+            for (var i = 1; i < arguments.length; i++) {
+                max = arguments[i] > max ? arguments[i] : max;
+            }
+            return max;
+        }
+
+        document.write("최대값 = " + max(9, 20, 3, 4, 5, 6, 7, 8, 90));
+
+        var result = max(9, 20, 3, 4, 5, 6, 7, 8, 90);
+
+        document.write("<hr>최대값 = " + result);
+    </script>
+</head>
+<body>
+
+</body>
+</html>
